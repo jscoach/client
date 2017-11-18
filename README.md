@@ -1,3 +1,18 @@
+## Setting up search with Algolia
+
+Duplicate the existing `.env` file in the root directory of this subproject and name it `.env.local`.
+This file is already on the `.gitignore` file so you don't accidently commit it to your repository.
+Visit the algolia website and fill the following environment variables:
+
+```bash
+  # Algolia configs
+  REACT_APP_ALGOLIA_APP_ID="<your-app-id>"
+  REACT_APP_ALGOLIA_API_KEY="<your-search-api-key>"
+  REACT_APP_ALGOLIA_INDEX="<your-primary-index-name>"
+```
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
