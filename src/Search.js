@@ -6,10 +6,16 @@ import {
   Panel,
   PoweredBy,
   RefinementList,
-  SearchBox
+  SearchBox,
+  SortBy
 } from "react-instantsearch/dom";
 
 import Library from "./Library";
+
+const sortOptions = [
+  { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "Relevance" },
+  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "Updated at" }
+];
 
 const Search = () => {
   return (
@@ -17,6 +23,8 @@ const Search = () => {
       <SearchBox />
 
       <Menu attributeName="collections" />
+
+      <SortBy items={sortOptions} defaultRefinement={sortOptions[0].value} />
 
       <Panel title="Categories">
         <RefinementList attributeName="categories" />

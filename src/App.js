@@ -9,7 +9,7 @@ const App = () => (
   <InstantSearch
     appId={process.env.REACT_APP_ALGOLIA_APP_ID}
     apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
-    indexName={process.env.REACT_APP_ALGOLIA_INDEX}
+    indexName={process.env.REACT_APP_INDEX_BY_RELEVANCE}
   >
     <img src={logo} className="App-logo" alt="logo" />
     <Search />
