@@ -12,12 +12,7 @@ import {
 
 import Library from "./Library";
 
-const sortOptions = [
-  { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "Relevance" },
-  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "Updated at" }
-];
-
-const Search = () => {
+const Search = ({ sortOptions }) => {
   return (
     <div className="container">
       <SearchBox />
@@ -27,7 +22,7 @@ const Search = () => {
       <SortBy items={sortOptions} defaultRefinement={sortOptions[0].value} />
 
       <Panel title="Categories">
-        <RefinementList attributeName="categories" />
+        <Menu attributeName="categories" />
       </Panel>
 
       <Panel title="Filters">

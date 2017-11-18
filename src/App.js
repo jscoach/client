@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { InstantSearch } from "react-instantsearch/dom";
+import pickBy from "lodash.pickby";
+import identity from "lodash.identity";
 import PropTypes from "prop-types";
 import qs from "qs";
 
@@ -7,10 +9,57 @@ import Search from "./Search";
 import logo from "./logo.svg";
 import "./App.css";
 
-const createURL = state => `?${qs.stringify(state)}`;
+const filterDelimiter = ";";
+
+const stripFalsy = object => pickBy(object, identity);
+
+const sortOptions = [
+  { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "Relevance" },
+  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "Updated at" }
+];
+
+const createURL = state => {
+  const selectedSortOption = sortOptions.find(
+    option => state.sortBy === option.value
+  );
+
+  const params = stripFalsy({
+    query: state.query,
+    page: state.page > 1 ? state.page : null,
+    sort: selectedSortOption && selectedSortOption.label,
+    collection: state.menu && state.menu.collections,
+    category: state.menu && state.menu.categories,
+    filters:
+      state.refinementList &&
+      state.refinementList.filters &&
+      state.refinementList.filters.join(filterDelimiter)
+  });
+
+  return qs.stringify(params, { format: "RFC1738", addQueryPrefix: true });
+};
+
 const searchStateToUrl = (props, searchState) =>
   searchState ? `${props.location.pathname}${createURL(searchState)}` : "";
-const urlToSearchState = location => qs.parse(location.search.slice(1));
+
+const urlToSearchState = location => {
+  const params = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const selectedSortOption = sortOptions.find(
+    option => params.sort === option.label
+  );
+
+  return stripFalsy({
+    query: params.query,
+    page: params.page,
+    sortBy: selectedSortOption && selectedSortOption.value,
+    menu: stripFalsy({
+      collections: params.collection,
+      categories: params.category
+    }),
+    refinementList: stripFalsy({
+      filters: params.filters && params.filters.split(filterDelimiter)
+    })
+  });
+};
 
 class App extends Component {
   constructor(props) {
@@ -24,16 +73,18 @@ class App extends Component {
     }
   }
 
-  onSearchStateChange = (searchState) => {
+  onSearchStateChange = searchState => {
     clearTimeout(this.debouncedSetState);
+
     this.debouncedSetState = setTimeout(() => {
       this.props.history.push(
         searchStateToUrl(this.props, searchState),
         searchState
       );
     }, 700);
+
     this.setState({ searchState });
-  }
+  };
 
   render() {
     return (
@@ -46,7 +97,7 @@ class App extends Component {
         createURL={createURL}
       >
         <img src={logo} className="App-logo" alt="logo" />
-        <Search />
+        <Search sortOptions={sortOptions} />
       </InstantSearch>
     );
   }

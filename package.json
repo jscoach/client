@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash.identity": "^3.0.0",
+    "lodash.pickby": "^4.6.0",
     "prop-types": "^15.6.0",
     "qs": "^6.5.1",
     "react": "^16.1.1",
