@@ -25,7 +25,6 @@ const createURL = state => {
 
   const params = stripFalsy({
     query: state.query,
-    page: state.page > 1 ? state.page : null,
     sort: selectedSortOption && selectedSortOption.label,
     collection: state.menu && state.menu.collections,
     category: state.menu && state.menu.categories,
@@ -49,7 +48,6 @@ const urlToSearchState = location => {
 
   return stripFalsy({
     query: params.query,
-    page: params.page,
     sortBy: selectedSortOption && selectedSortOption.value,
     menu: stripFalsy({
       collections: params.collection,
@@ -65,12 +63,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { searchState: urlToSearchState(props.location) };
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.location !== this.props.location) {
-      this.setState({ searchState: urlToSearchState(props.location) });
-    }
   }
 
   onSearchStateChange = searchState => {
