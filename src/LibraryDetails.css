@@ -1,0 +1,50 @@
+/* We convert headings into anchored hyperlinks, but hide it visually for now */
+.markdown-body h1 a[href^="#"],
+.markdown-body h2 a[href^="#"],
+.markdown-body h3 a[href^="#"],
+.markdown-body h4 a[href^="#"],
+.markdown-body h5 a[href^="#"],
+.markdown-body h6 a[href^="#"] {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* If a redundant package name or description is found in the readme, hide them */
+.markdown-body .package-name-redundant,
+.markdown-body .package-description-redundant {
+  display: none;
+}
+.markdown-body > .package-name-redundant:first-child + * {
+  margin-top: 0 !important;
+}
+.markdown-body > .package-name-redundant:first-child + .package-description-redundant + * {
+  margin-top: 0 !important;
+}
+
+/* Removes top blank space that doesn't look good when the package
+ * name is hidden and there are badges below */
+.markdown-body:before {
+  display: none;
+}
+
+.markdown-body img {
+  border-radius: 3px;
+}
+
+/* A placeholder for while images are loading. It has the same height of badges.
+ * List from `marky-markdown (http://git.io/vEzmx) `*/
+img[data-canonical-src*='badge.fury.io'],
+img[data-canonical-src*='badges.github.io'],
+img[data-canonical-src*='badges.gitter.im'],
+img[data-canonical-src*='ci.testling.com'],
+img[data-canonical-src*='coveralls.io'],
+img[data-canonical-src*='david-dm.org'],
+img[data-canonical-src*='img.shields.io'],
+img[data-canonical-src*='nodei.co'],
+img[data-canonical-src*='saucelabs.com'],
+img[data-canonical-src*='secure.travis-ci.org'],
+img[data-canonical-src*='travis-ci.org'] {
+  background: #e6e6e6;
+  min-height: 20px;
+  min-width: 20px;
+}

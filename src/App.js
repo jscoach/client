@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { InstantSearch } from "react-instantsearch/dom";
+import { Route } from "react-router-dom";
 import pickBy from "lodash.pickby";
 import identity from "lodash.identity";
 import throttle from "lodash.throttle";
@@ -7,6 +8,7 @@ import PropTypes from "prop-types";
 import qs from "qs";
 
 import Search from "./Search";
+import LibraryDetails from "./LibraryDetails";
 
 const filterDelimiter = ";";
 
@@ -89,6 +91,7 @@ class App extends Component {
           createURL={createURL}
         >
           <Search sortOptions={sortOptions} />
+          <Route path="/:libraryId" component={LibraryDetails}/>
         </InstantSearch>
       </div>
     );
