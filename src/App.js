@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { InstantSearch } from "react-instantsearch/dom";
 import pickBy from "lodash.pickby";
 import identity from "lodash.identity";
+import throttle from "lodash.throttle";
 import PropTypes from "prop-types";
 import qs from "qs";
 
@@ -63,20 +64,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { searchState: urlToSearchState(props.location) };
+    this.updateURL = throttle(this.updateURL, 1000);
   }
 
   onSearchStateChange = searchState => {
-    clearTimeout(this.debouncedSetState);
-
-    this.debouncedSetState = setTimeout(() => {
-      this.props.history.push(
-        searchStateToUrl(this.props, searchState),
-        searchState
-      );
-    }, 700);
-
+    this.updateURL(searchState);
     this.setState({ searchState });
   };
+
+  updateURL = (searchState) => {
+    this.props.history.push(
+      searchStateToUrl(this.props, searchState),
+      searchState
+    );
+  }
 
   render() {
     return (
