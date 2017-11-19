@@ -7,16 +7,14 @@ import PropTypes from "prop-types";
 import qs from "qs";
 
 import Search from "./Search";
-import logo from "./logo.svg";
-import "./App.css";
 
 const filterDelimiter = ";";
 
 const stripFalsy = object => pickBy(object, identity);
 
 const sortOptions = [
-  { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "Relevance" },
-  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "Updated at" }
+  { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "relevance" },
+  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated at" }
 ];
 
 const createURL = state => {
@@ -81,17 +79,18 @@ class App extends Component {
 
   render() {
     return (
-      <InstantSearch
-        appId={process.env.REACT_APP_ALGOLIA_APP_ID}
-        apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
-        indexName={process.env.REACT_APP_INDEX_BY_RELEVANCE}
-        searchState={this.state.searchState}
-        onSearchStateChange={this.onSearchStateChange}
-        createURL={createURL}
-      >
-        <img src={logo} className="App-logo" alt="logo" />
-        <Search sortOptions={sortOptions} />
-      </InstantSearch>
+      <div className="bg-grey-lightest pt-4 pb-2 min-h-screen">
+        <InstantSearch
+          appId={process.env.REACT_APP_ALGOLIA_APP_ID}
+          apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
+          indexName={process.env.REACT_APP_INDEX_BY_RELEVANCE}
+          searchState={this.state.searchState}
+          onSearchStateChange={this.onSearchStateChange}
+          createURL={createURL}
+        >
+          <Search sortOptions={sortOptions} />
+        </InstantSearch>
+      </div>
     );
   }
 }
