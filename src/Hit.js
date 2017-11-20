@@ -2,6 +2,10 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Highlight } from "react-instantsearch/dom";
 import TimeAgo from "react-timeago";
+import numeral from "numeral";
+
+// This converts a number such as 4200 to 4.2K and 1004 to 1K
+const format = "0[.]0a";
 
 const Hit = withRouter(({ hit, history, location }) => (
   <a
@@ -37,9 +41,24 @@ const Hit = withRouter(({ hit, history, location }) => (
     />
 
     <div>
-      <span className="text-orange-dark pr-2">{hit.stars} stars</span>
-      <span className="text-teal-dark pr-2">{hit.downloads} downloads</span>
-      <span className="text-purple-dark">{hit.dependents} dependents</span>
+      <span
+        className="text-orange-dark pr-2"
+        title={`${hit.stars} stars on GitHub`}
+      >
+        {numeral(hit.stars).format(format)} stars
+      </span>
+      <span
+        className="text-teal-dark pr-2"
+        title={`${hit.downloads} downloads from NPM in the last month`}
+      >
+        {numeral(hit.downloads).format(format)} downloads/mo
+      </span>
+      <span
+        className="text-purple-dark"
+        title={`${hit.dependents} libraries depend on this library`}
+      >
+        {numeral(hit.dependents).format(format)} dependents
+      </span>
     </div>
   </a>
 ));
