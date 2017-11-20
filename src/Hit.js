@@ -23,7 +23,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         </div>
       )}
       <strong className="pr-2 text-lg">
-        <Highlight attributeName="name" hit={hit} />
+        <Highlight attributeName="name" hit={hit} tagName="mark" />
       </strong>
       <em className="roman text-grey-dark">
         v{hit.latestRelease} published{" "}
