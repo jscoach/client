@@ -26,6 +26,18 @@ REACT_APP_INDEX_BY_RELEVANCE="<your-primary-index-name>"
 REACT_APP_INDEX_BY_UPDATED_AT="<your-replica-index-name>"
 ```
 
+## Deploying to GitHub pages
+
+GitHub Pages doesn’t support routers that use the HTML5 `pushState` history API under the hood.
+To work around that we use a trick to teach GitHub Pages to handle 404 by redirecting to the `index.html` page with a special redirect parameter.
+You can find a detailed explanation of this technique [in this guide](https://github.com/rafrex/spa-github-pages).
+
+If you are setting up a Project Pages site and not using a custom domain (i.e. your site's address is `username.github.io/repo-name`),
+then you need to set `segmentCount` to `1` in the `404.html` file in order to keep `/repo-name` in the path after the redirect.
+
+Apart from that, deployment works exactly as usual for apps created using `create-react-app`.
+You can follow the [instructions below](#github-pages).
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
