@@ -21,7 +21,7 @@ const Header = hit => (
     <strong className="pr-2 text-lg">{hit.name}</strong>
     <em className="roman text-grey-dark">
       v{hit.latestRelease} published{" "}
-      <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.owner}
+      <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
     </em>
   </div>
 );

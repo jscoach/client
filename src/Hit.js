@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Highlight } from "react-instantsearch/dom";
 import TimeAgo from "react-timeago";
 import numeral from "numeral";
@@ -11,17 +11,9 @@ const pluralize = (count, singular, plural = `${singular}s`) =>
   count === 1 ? singular : plural;
 
 const Hit = withRouter(({ hit, history, location }) => (
-  <a
+  <Link
     className="bg-white block no-underline text-black border border-t-0 p-3 hover:bg-grey-lightest"
-    href={hit.repositoryUrl}
-    target="_blank"
-    onClick={e => {
-      e.preventDefault();
-      history.push({
-        pathname: `/${hit.name}`,
-        search: location.search
-      });
-    }}
+    to={`/${hit.name}`}
   >
     <div className="mb-1">
       {hit.collections.length > 0 && (
@@ -34,7 +26,7 @@ const Hit = withRouter(({ hit, history, location }) => (
       </strong>
       <em className="roman text-grey-dark">
         v{hit.latestRelease} published{" "}
-        <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.owner}
+        <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
       </em>
     </div>
 
@@ -63,7 +55,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         {numeral(hit.dependents).format(format)} {pluralize(hit.dependents, "dependent")}
       </span>
     </div>
-  </a>
+  </Link>
 ));
 
 export default Hit;

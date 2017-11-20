@@ -21,10 +21,10 @@ const attributesToRetrieve = [
   "latestRelease",
   "modifiedAt",
   "name",
-  "owner",
   "publishedAt",
-  "repositoryUrl",
-  "stars",
+  "repositoryName",
+  "repositoryUser",
+  "stars"
 ];
 
 const sortOptions = [
