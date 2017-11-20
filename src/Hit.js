@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Highlight } from "react-instantsearch/dom";
+import TimeAgo from "react-timeago";
 
 const Hit = withRouter(({ hit, history, location }) => (
   <a
@@ -10,7 +11,7 @@ const Hit = withRouter(({ hit, history, location }) => (
     onClick={e => {
       e.preventDefault();
       history.push({
-        pathname: `/${ hit.name }`,
+        pathname: `/${hit.name}`,
         search: location.search
       });
     }}
@@ -25,7 +26,8 @@ const Hit = withRouter(({ hit, history, location }) => (
         <Highlight attributeName="name" hit={hit} />
       </strong>
       <em className="roman text-grey-dark">
-        v{hit.latestRelease} published {hit.modifiedAt} by {hit.owner}
+        v{hit.latestRelease} published{" "}
+        <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.owner}
       </em>
     </div>
 

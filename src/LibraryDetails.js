@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connectStateResults } from "react-instantsearch/connectors";
+import TimeAgo from "react-timeago";
 import "github-markdown-css";
 
 import "./LibraryDetails.css";
@@ -18,7 +19,8 @@ const Header = hit => (
     <div className="text-grey text-sm mb-1">Filed under {hit.collections}</div>
     <strong className="pr-2 text-lg">{hit.name}</strong>
     <em className="roman text-grey-dark">
-      v{hit.latestRelease} published {hit.modifiedAt} by {hit.owner}
+      v{hit.latestRelease} published{" "}
+      <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.owner}
     </em>
   </div>
 );
