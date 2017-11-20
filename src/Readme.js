@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connectStateResults } from "react-instantsearch/connectors";
+import { Helmet } from "react-helmet";
 import TimeAgo from "react-timeago";
 import "github-markdown-css";
 
@@ -23,6 +24,25 @@ const Header = hit => (
       <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.owner}
     </em>
   </div>
+);
+
+const MetaTags = hit => (
+  <Helmet>
+    <title>{hit.name}</title>
+
+    <meta property="og:title" content={hit.name} />
+    <meta property="og:description" content={hit.description} />
+    <meta
+      property="og:image"
+      content={`https://github.com/${hit.repositoryUser}.png`}
+    />
+    <meta name="twitter:title" content={hit.name} />
+    <meta name="twitter:description" content={hit.description} />
+    <meta
+      name="twitter:image"
+      content={`https://github.com/${hit.repositoryUser}.png`}
+    />
+  </Helmet>
 );
 
 class Readme extends Component {
@@ -75,6 +95,8 @@ class Readme extends Component {
             dangerouslySetInnerHTML={{ __html: hit && hit.readme }}
           />
         </div>
+
+        <MetaTags {...hit} />
       </div>
     );
   }

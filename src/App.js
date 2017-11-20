@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { InstantSearch, Configure } from "react-instantsearch/dom";
 import { Route } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import pickBy from "lodash.pickby";
 import identity from "lodash.identity";
 import throttle from "lodash.throttle";
@@ -106,13 +107,16 @@ class App extends Component {
           onSearchStateChange={this.onSearchStateChange}
           createURL={createURL}
         >
-          <Configure
-            attributesToRetrieve={attributesToRetrieve}
-          />
+          <Configure attributesToRetrieve={attributesToRetrieve} />
           <Search sortOptions={sortOptions} />
         </InstantSearch>
 
         <Route path="/:scope?/:name" component={LibraryDetails} />
+
+        <Helmet
+          defaultTitle={process.env.REACT_APP_SITE_NAME}
+          titleTemplate={`%s / ${process.env.REACT_APP_SITE_NAME}`}
+        />
       </div>
     );
   }
