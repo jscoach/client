@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { InstantSearch } from "react-instantsearch/dom";
+import { InstantSearch, Configure } from "react-instantsearch/dom";
 import { Route } from "react-router-dom";
 import pickBy from "lodash.pickby";
 import identity from "lodash.identity";
@@ -10,14 +10,30 @@ import qs from "qs";
 import Search from "./Search";
 import LibraryDetails from "./LibraryDetails";
 
-const filterDelimiter = ";";
-
-const stripFalsy = object => pickBy(object, identity);
+const attributesToRetrieve = [
+  "categories",
+  "collections",
+  "dependents",
+  "description",
+  "downloads",
+  "filters",
+  "latestRelease",
+  "modifiedAt",
+  "name",
+  "owner",
+  "publishedAt",
+  "repositoryUrl",
+  "stars",
+];
 
 const sortOptions = [
   { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "relevance" },
   { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated at" }
 ];
+
+const filterDelimiter = ";";
+
+const stripFalsy = object => pickBy(object, identity);
 
 const createURL = state => {
   const selectedSortOption = sortOptions.find(
@@ -72,12 +88,12 @@ class App extends Component {
     this.setState({ searchState });
   };
 
-  updateURL = (searchState) => {
+  updateURL = searchState => {
     this.props.history.push(
       searchStateToUrl(this.props, searchState),
       searchState
     );
-  }
+  };
 
   render() {
     return (
@@ -90,9 +106,13 @@ class App extends Component {
           onSearchStateChange={this.onSearchStateChange}
           createURL={createURL}
         >
+          <Configure
+            attributesToRetrieve={attributesToRetrieve}
+          />
           <Search sortOptions={sortOptions} />
-          <Route path="/:libraryId" component={LibraryDetails}/>
         </InstantSearch>
+
+        <Route path="/:scope?/:name" component={LibraryDetails} />
       </div>
     );
   }
