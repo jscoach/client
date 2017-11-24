@@ -4,31 +4,31 @@ import { connectSearchBox } from "react-instantsearch/connectors";
 const SearchBox = connectSearchBox(({ currentRefinement, refine }) => (
   <form
     noValidate
-    className="bg-white border rounded-t px-3 pt-3 pb-2 flex flex-row"
+    className="bg-white border rounded py-2 px-3 h-12 flex items-center shadow"
     role="search"
   >
     <button
       type="submit"
-      className="text-grey"
+      className="leading-none text-grey"
       title="Submit your search query"
     >
       <svg
-        width="1.5rem"
-        height="1.5rem"
+        width="18px"
+        height="18px"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
+        viewBox="0 0 18 18"
       >
-        <path d="m17.409 15.789l3.441 3.441c.39.39.393 1.02-.001 1.414-.391.391-1.03.385-1.42-.005l-3.41-3.41c-1.373 1.108-3.119 1.771-5.02 1.771-4.418 0-8-3.582-8-8 0-4.418 3.582-8 8-8 4.418 0 8 3.582 8 8 0 1.796-.592 3.454-1.591 4.789m-6.409 1.211c3.314 0 6-2.686 6-6 0-3.314-2.686-6-6-6-3.314 0-6 2.686-6 6 0 3.314 2.686 6 6 6" />
+        <path d="M14.4085473,12.7893825 L17.8498594,16.2306945 C18.2400429,16.6208781 18.2424894,17.2510442 17.8492424,17.6442911 C17.4587181,18.0348154 16.8197307,18.028993 16.4297323,17.6389945 L13.020013,14.2292753 C11.6473565,15.3368602 9.90112056,16 8,16 C3.581722,16 2.22044605e-15,12.418278 2.22044605e-15,8 C2.22044605e-15,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,9.79620538 15.4080326,11.4541494 14.4085473,12.7893825 L14.4085473,12.7893825 Z M8,14 C11.3137085,14 14,11.3137085 14,8 C14,4.6862915 11.3137085,2 8,2 C4.6862915,2 2,4.6862915 2,8 C2,11.3137085 4.6862915,14 8,14 Z" />
       </svg>
     </button>
     <input
       autoCapitalize="off"
       autoComplete="off"
       autoCorrect="off"
-      className="bg-transparent flex-1 px-1 mx-1 text-black"
+      className="bg-transparent flex-1 p-2 mx-1 text-black"
       name="query"
       onChange={e => refine(e.target.value)}
-      placeholder="Search"
+      placeholder="Search for components, boilerplates, generators and other packages"
       spellCheck="false"
       type="search"
       value={currentRefinement}
@@ -36,18 +36,18 @@ const SearchBox = connectSearchBox(({ currentRefinement, refine }) => (
     />
     {currentRefinement && (
       <button
-        className="text-grey"
+        className="leading-none text-grey"
         onClick={() => refine("")}
         title="Clear the search query"
         type="reset"
       >
         <svg
-          width="1.5rem"
-          height="1.5rem"
-          viewBox="0 0 24 24"
+          width="18px"
+          height="18px"
           xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 18 18"
         >
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          <polygon points="16 3.41 14.59 2 9 7.59 3.41 2 2 3.41 7.59 9 2 14.59 3.41 16 9 10.41 14.59 16 16 14.59 10.41 9"/>
         </svg>
       </button>
     )}

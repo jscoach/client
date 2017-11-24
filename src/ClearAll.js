@@ -6,9 +6,9 @@ const ClearAll = connectCurrentRefinements(({ items, refine }) => (
     {items.length > 0 && (
       <button
         onClick={() => refine(items)}
-        className="bg-white border border-orange-lighter hover:bg-orange-lightest text-sm py-2 px-3 rounded my-2"
+        className="bg-white hover:bg-grey-lighter border text-sm py-2 px-3 rounded my-2"
       >
-        Clear all filters
+        Clear all
       </button>
     )}
   </div>

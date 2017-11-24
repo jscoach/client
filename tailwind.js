@@ -46,14 +46,14 @@ var defaultConfig = require('tailwindcss/defaultConfig')()
 var colors = {
   'transparent': 'transparent',
 
-  'black': '#222b2f',
-  'grey-darkest': '#364349',
-  'grey-darker': '#596a73',
-  'grey-dark': '#70818a',
-  'grey': '#9babb4',
-  'grey-light': '#dae4e9',
-  'grey-lighter': '#f3f7f9',
-  'grey-lightest': '#fafcfc',
+  'black': '#000000',
+  'grey-darkest': '#444444',
+  'grey-darker': '#666666',
+  'grey-dark': '#888888',
+  'grey': '#b1b1b1',
+  'grey-light': '#d9d9d9',
+  'grey-lighter': '#f2f2f2',
+  'grey-lightest': '#fafafa',
   'white': '#ffffff',
 
   'red-darkest': '#420806',
@@ -64,13 +64,13 @@ var colors = {
   'red-lighter': '#f9acaa',
   'red-lightest': '#fcebea',
 
-  'orange-darkest': '#542605',
-  'orange-darker': '#7f4012',
-  'orange-dark': '#de751f',
-  'orange': '#f6993f',
-  'orange-light': '#faad63',
-  'orange-lighter': '#fcd9b6',
-  'orange-lightest': '#fff5eb',
+  'orange-darkest': '#4d370e',
+  'orange-darker': '#7c5b1b',
+  'orange-dark': '#ce972d',
+  'orange': '#efb33d',
+  'orange-light': '#fec93e',
+  'orange-lighter': '#ffe7b2',
+  'orange-lightest': '#fff9ed',
 
   'yellow-darkest': '#453411',
   'yellow-darker': '#684f1d',
@@ -302,7 +302,7 @@ module.exports = {
   */
 
   leading: {
-    'none': 1,
+    'none': 0,
     'tight': 1.25,
     'normal': 1.5,
     'loose': 2,
@@ -322,9 +322,9 @@ module.exports = {
   */
 
   tracking: {
-    'tight': '-0.05em',
+    'tight': '-0.02em',
     'normal': '0',
-    'wide': '0.05em',
+    'wide': '0.02em',
   },
 
 
@@ -657,6 +657,7 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+    '16': '4rem',
   },
 
 

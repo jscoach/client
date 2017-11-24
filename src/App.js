@@ -99,8 +99,12 @@ class App extends Component {
   };
 
   render() {
+    const isHome =
+      window.location.search === "" &&
+      this.state.searchState.page === undefined;
+
     return (
-      <div className="bg-grey-lightest pt-4 pb-2 min-h-screen">
+      <div className={`min-h-screen font-sans tracking-tight ${isHome ? 'bg-grey-lighter' : 'bg-white'}`}>
         <InstantSearch
           appId={process.env.REACT_APP_ALGOLIA_APP_ID}
           apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
@@ -110,10 +114,10 @@ class App extends Component {
           createURL={createURL}
         >
           <Configure attributesToRetrieve={attributesToRetrieve} />
-          <Search sortOptions={sortOptions} />
+          <Search sortOptions={sortOptions} isHome={isHome} />
         </InstantSearch>
 
-        <Route path="/:scope?/:name" component={LibraryDetails} />
+        <Route path="/:user?/:name" component={LibraryDetails} />
 
         <Helmet
           defaultTitle={process.env.REACT_APP_SITE_NAME}

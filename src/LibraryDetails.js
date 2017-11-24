@@ -5,8 +5,8 @@ import { InstantSearch, Configure } from "react-instantsearch/dom";
 import Readme from "./Readme";
 
 const LibraryDetails = withRouter(({ match }) => {
-  const { scope, name } = match.params;
-  const id = scope ? `${scope}/${name}` : name;
+  const { user, name } = match.params;
+  const id = user ? `${user}/${name}` : name;
 
   return (
     <InstantSearch

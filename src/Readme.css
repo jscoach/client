@@ -1,3 +1,8 @@
+.markdown-body {
+  font-family: inherit !important;
+  line-height: 1.4 !important;
+}
+
 /* We convert headings into anchored hyperlinks, but hide it visually for now */
 .markdown-body h1 a[href^="#"],
 .markdown-body h2 a[href^="#"],

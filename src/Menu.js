@@ -24,18 +24,16 @@ const Menu = ({
   attributeName,
   currentRefinement,
   items,
-  showAllLabel,
-  noResultsLabel,
   ...otherProps
 }) => (
   <div>
     {items.length === 0 && (
-      <span className="text-grey-dark">{noResultsLabel || `No ${attributeName}`}</span>
+      <span className="text-grey-dark">No {attributeName}.</span>
     )}
 
     {items.length > 0 && (
       <MenuItem
-        label={showAllLabel}
+        label="All"
         value={null}
         isRefined={!currentRefinement && items.length}
         {...otherProps}
@@ -45,9 +43,5 @@ const Menu = ({
     {items.map(item => <MenuItem key={item.label} {...otherProps} {...item} />)}
   </div>
 );
-
-Menu.defaultProps = {
-  showAllLabel: "All"
-};
 
 export default connectMenu(Menu);

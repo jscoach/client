@@ -12,13 +12,13 @@ const pluralize = (count, singular, plural = `${singular}s`) =>
 
 const Hit = withRouter(({ hit, history, location }) => (
   <Link
-    className="bg-white block no-underline text-black border border-t-0 p-3 hover:bg-grey-lightest"
-    to={`/${hit.name}`}
+    className="bg-white block no-underline text-black p-3 hover:bg-grey-lighter rounded w-full"
+    to={{ pathname: hit.name, search: location.search }}
   >
     <div className="mb-1">
       {hit.collections.length > 0 && (
-        <div className="text-grey text-sm mb-2">
-          Filed under {hit.collections}
+        <div className="text-grey text-sm mb-1">
+          {hit.collections.join(", ")}
         </div>
       )}
       <strong className="pr-2 text-lg">
@@ -44,15 +44,24 @@ const Hit = withRouter(({ hit, history, location }) => (
       </span>
       <span
         className="text-teal-dark pr-2"
-        title={`${hit.downloads} ${pluralize(hit.downloads, "download")} from NPM in the last month`}
+        title={`${hit.downloads} ${pluralize(
+          hit.downloads,
+          "download"
+        )} from NPM in the last month`}
       >
-        {numeral(hit.downloads).format(format)} {pluralize(hit.downloads, "download")}/mo
+        {numeral(hit.downloads).format(format)}{" "}
+        {pluralize(hit.downloads, "download")}/mo
       </span>
       <span
         className="text-purple-dark"
-        title={`${hit.dependents} ${pluralize(hit.dependents, "library", "libraries")} depend on this library`}
+        title={`${hit.dependents} ${pluralize(
+          hit.dependents,
+          "library",
+          "libraries"
+        )} depend on this library`}
       >
-        {numeral(hit.dependents).format(format)} {pluralize(hit.dependents, "dependent")}
+        {numeral(hit.dependents).format(format)}{" "}
+        {pluralize(hit.dependents, "dependent")}
       </span>
     </div>
   </Link>

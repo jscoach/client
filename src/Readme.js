@@ -8,16 +8,16 @@ import "github-markdown-css";
 import "./Readme.css";
 
 const Header = hit => (
-  <div className="bg-grey-lighter border-b border-grey-light px-8 py-4 rounded-t">
+  <div className="bg-grey-lighter border-b border-grey-light px-8 py-4">
     <a
       className="float-right no-underline text-white bg-blue hover:bg-blue-dark border border-blue-darker py-2 px-4 rounded ml-4 mb-2"
-      href={hit.repositoryUrl}
+      href={`https://github.com/${hit.repositoryUser}/${hit.repositoryName}`}
       target="_blank"
     >
       View on GitHub
     </a>
 
-    <div className="text-grey text-sm mb-1">Filed under {hit.collections}</div>
+    <div className="text-grey text-sm mb-1">{hit.collections.join(", ")}</div>
     <strong className="pr-2 text-lg">{hit.name}</strong>
     <em className="roman text-grey-dark">
       v{hit.latestRelease} published{" "}
@@ -84,19 +84,21 @@ class Readme extends Component {
 
     return (
       <div className="fixed pin overflow-auto" onClick={this.handleDismiss}>
-        <div className="fixed pin bg-teal opacity-75 pointer-events-none" />
-        <div
-          className="relative bg-white max-w-xl m-auto my-8 shadow-lg rounded"
-          onClick={this.handleClick}
-        >
-          <Header {...hit} />
+        <div className="fixed bg-black pin pointer-events-none opacity-25" />
+        {hit && (
           <div
-            className="p-8"
-            dangerouslySetInnerHTML={{ __html: hit && hit.readme }}
-          />
-        </div>
-
-        <MetaTags {...hit} />
+            className="relative bg-white ml-auto"
+            onClick={this.handleClick}
+            style={{ boxShadow: "-1px 0 0 rgba(0,0,0,.2), 0 0 18px 4px rgba(0,0,0,.15)", maxWidth: 890 }}
+          >
+            <Header {...hit} />
+            <div
+              className="p-8"
+              dangerouslySetInnerHTML={{ __html: hit && hit.readme }}
+            />
+            <MetaTags {...hit} />
+          </div>
+        )}
       </div>
     );
   }
