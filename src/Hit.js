@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Highlight } from "react-instantsearch/dom";
 import TimeAgo from "react-timeago";
 import numeral from "numeral";
+
+import Highlight from "./Highlight";
 
 // This converts a number such as 4200 to 4.2K and 1004 to 1K
 const format = "0[.]0a";
@@ -30,12 +31,9 @@ const Hit = withRouter(({ hit, history, location }) => (
       </em>
     </div>
 
-    <div
-      className="mb-2"
-      dangerouslySetInnerHTML={{ __html: hit.description }}
-    />
+    <Highlight attributeName="description" hit={hit} tagName="mark" />
 
-    <div>
+    <div className="mt-2">
       <span
         className="text-orange-dark pr-2"
         title={`${hit.stars} ${pluralize(hit.stars, "star")} on GitHub`}
