@@ -9,28 +9,48 @@ const pluralize = (count, singular, plural = `${singular}s`) =>
   count === 1 ? singular : plural;
 
 const Hit = withRouter(({ hit, history, location }) => (
-  <Link
-    className="bg-white block no-underline text-black p-3 hover:bg-grey-lighter rounded w-full"
-    to={{ pathname: hit.name, search: location.search }}
-  >
+  <div className="relative bg-white block text-black p-3 hover:bg-grey-lighter rounded w-full">
+    <Link
+      className="pin absolute z-10"
+      to={{ pathname: hit.name, search: location.search }}
+    />
+
     <div className="mb-2">
       {hit.collections.length > 0 && (
         <div className="text-grey text-sm mb-1">
           {hit.collections.join(", ")}
         </div>
       )}
-      <strong className="pr-2 text-lg text-blue-dark visited">
-        <Highlight attributeName="name" hit={hit} tagName="mark" />
-      </strong>
+      <Link
+        to={{ pathname: hit.name, search: location.search }}
+        className="text-blue-dark visited no-underline"
+      >
+        <strong className="pr-2 text-lg">
+          <Highlight attributeName="name" hit={hit} tagName="mark" />
+        </strong>
+      </Link>
       <em className="roman text-grey-dark">
         v{hit.latestRelease} published{" "}
         <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
       </em>
     </div>
 
-    <Highlight attributeName="description" hit={hit} tagName="mark" />
+    <p className="mb-2 leading-tight">
+      <Highlight attributeName="description" hit={hit} tagName="mark" />
+    </p>
 
-    <div className="mt-2">
+    <div>
+      {hit.license && (
+        <a
+          className="inline-block mr-2 px-1 border rounded-sm text-sm truncate align-bottom no-underline text-black z-20 relative"
+          style={{ maxWidth: 100 }}
+          target="_blank"
+          href={`https://spdx.org/licenses/${hit.license}.html`}
+        >
+          {hit.license}
+        </a>
+      )}
+
       <span
         className="text-orange-dark pr-2"
         title={`${hit.stars} ${pluralize(hit.stars, "star")} on GitHub`}
@@ -58,7 +78,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         {pluralize(hit.dependents, "dependent")}
       </span>
     </div>
-  </Link>
+  </div>
 ));
 
 export default Hit;

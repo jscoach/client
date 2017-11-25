@@ -83,11 +83,11 @@ class Readme extends Component {
       searchResults && searchResults.hits.find(hit => hit.name === id);
 
     return (
-      <div className="fixed pin overflow-auto" onClick={this.handleDismiss}>
+      <div className="fixed pin overflow-auto z-30 cursor-pointer" onClick={this.handleDismiss}>
         <div className="fixed bg-black pin pointer-events-none opacity-25" />
         {hit && (
           <div
-            className="relative bg-white ml-auto"
+            className="relative bg-white ml-auto cursor-auto"
             onClick={this.handleClick}
             style={{ boxShadow: "-1px 0 0 rgba(0,0,0,.2), 0 0 18px 4px rgba(0,0,0,.15)", maxWidth: 890 }}
           >

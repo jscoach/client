@@ -21,6 +21,7 @@ const attributesToRetrieve = [
   "downloads",
   "filters",
   "latestRelease",
+  "license",
   "modifiedAt",
   "name",
   "publishedAt",
@@ -104,7 +105,11 @@ class App extends Component {
       this.state.searchState.page === undefined;
 
     return (
-      <div className={`min-h-screen font-sans tracking-tight ${isHome ? 'bg-grey-lighter' : 'bg-white'}`}>
+      <div
+        className={`min-h-screen font-sans tracking-tight ${
+          isHome ? "bg-grey-lighter" : "bg-white"
+        }`}
+      >
         <InstantSearch
           appId={process.env.REACT_APP_ALGOLIA_APP_ID}
           apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
