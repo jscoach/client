@@ -5,7 +5,15 @@ const Topbar = () => (
     <a href="/" className="no-underline text-black p-2">
       <h1 className="text-xl font-bold">JS.coach</h1>
     </a>
+
     <div className="flex-1" />
+
+    <a
+      href="https://legacy.js.coach"
+      className="no-underline text-orange-dark p-2"
+    >
+      Back to legacy
+    </a>
     <a
       href="https://github.com/dmfrancisco/JS.coach/blob/master/CONTRIBUTING.md"
       className="no-underline text-black p-2"
