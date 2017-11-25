@@ -59,10 +59,17 @@
 /**
  * Global styles.
  */
+
 html {
   background: #d9d9d9;
 }
+
 mark {
   background: rgba(248,231,28,0.15);
   color: inherit;
+}
+
+a:visited .visited,
+a:visited .visited mark {
+  color: config('colors.purple-dark');
 }

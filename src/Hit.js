@@ -16,13 +16,13 @@ const Hit = withRouter(({ hit, history, location }) => (
     className="bg-white block no-underline text-black p-3 hover:bg-grey-lighter rounded w-full"
     to={{ pathname: hit.name, search: location.search }}
   >
-    <div className="mb-1">
+    <div className="mb-2">
       {hit.collections.length > 0 && (
         <div className="text-grey text-sm mb-1">
           {hit.collections.join(", ")}
         </div>
       )}
-      <strong className="pr-2 text-lg">
+      <strong className="pr-2 text-lg text-blue-dark visited">
         <Highlight attributeName="name" hit={hit} tagName="mark" />
       </strong>
       <em className="roman text-grey-dark">
