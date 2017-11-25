@@ -4,6 +4,7 @@ import {
   connectStateResults
 } from "react-instantsearch/connectors";
 
+import humanizedNumber from "./humanizedNumber";
 import Hit from "./Hit";
 
 const NoResults = connectStateResults(
@@ -16,11 +17,24 @@ const NoResults = connectStateResults(
     )
 );
 
+const Delimiter = connectStateResults(
+  ({ index, searchResults }) =>
+    (index + 1) % searchResults.hitsPerPage === 0 ? (
+      <div
+        className="relative border-b text-grey my-2"
+        data-count={humanizedNumber(index + 1)}
+      />
+    ) : null
+);
+
 const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => (
   <div>
     <NoResults />
 
-    {hits.map(hit => <Hit hit={hit} key={hit.objectID} />)}
+    {hits.map((hit, index) => [
+      <Hit hit={hit} key={hit.objectID} />,
+      <Delimiter key={`delimiter-${hit.objectID}`} index={index} />
+    ])}
 
     {hasMore && (
       <button

@@ -69,7 +69,22 @@ mark {
   color: inherit;
 }
 
+/* Give a different color to visited links */
 a:visited .visited,
 a:visited .visited mark {
   color: config('colors.purple-dark');
+}
+
+/* Shows a counter before the element.
+ * This is currently used to delimit results per page. */
+div[data-count]:before {
+  color: currentColor;
+  content: attr(data-count);
+  left: -4rem;
+  overflow: hidden;
+  padding-right: 0.5rem;
+  position: absolute;
+  text-align: right;
+  top: -0.5rem;
+  width: 4rem;
 }

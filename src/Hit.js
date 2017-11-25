@@ -1,12 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import TimeAgo from "react-timeago";
-import numeral from "numeral";
 
+import humanizedNumber from "./humanizedNumber";
 import Highlight from "./Highlight";
-
-// This converts a number such as 4200 to 4.2K and 1004 to 1K
-const format = "0[.]0a";
 
 const pluralize = (count, singular, plural = `${singular}s`) =>
   count === 1 ? singular : plural;
@@ -38,7 +35,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         className="text-orange-dark pr-2"
         title={`${hit.stars} ${pluralize(hit.stars, "star")} on GitHub`}
       >
-        {numeral(hit.stars).format(format)} {pluralize(hit.stars, "star")}
+        {humanizedNumber(hit.stars)} {pluralize(hit.stars, "star")}
       </span>
       <span
         className="text-teal-dark pr-2"
@@ -47,8 +44,7 @@ const Hit = withRouter(({ hit, history, location }) => (
           "download"
         )} from NPM in the last month`}
       >
-        {numeral(hit.downloads).format(format)}{" "}
-        {pluralize(hit.downloads, "download")}/mo
+        {humanizedNumber(hit.downloads)} {pluralize(hit.downloads, "download")}/mo
       </span>
       <span
         className="text-purple-dark"
@@ -58,7 +54,7 @@ const Hit = withRouter(({ hit, history, location }) => (
           "libraries"
         )} depend on this library`}
       >
-        {numeral(hit.dependents).format(format)}{" "}
+        {humanizedNumber(hit.dependents)}{" "}
         {pluralize(hit.dependents, "dependent")}
       </span>
     </div>
