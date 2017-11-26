@@ -14,7 +14,12 @@ import Topbar from "./Topbar";
 import jess from "./images/jess.svg";
 import jessSmall from "./images/jess-small.svg";
 
-const Search = ({ isHome, currentCollection, sortOptions }) => (
+const Search = ({
+  isHome,
+  currentCollection,
+  collectionsOrder,
+  sortOptions
+}) => (
   <div>
     <Topbar />
 
@@ -58,7 +63,16 @@ const Search = ({ isHome, currentCollection, sortOptions }) => (
         <div className={isHome ? "placeholder-center" : "ml-16 max-w-md"}>
           <SearchBox />
           <div className={isHome ? "mt-4" : "mt-4 ml-1"}>
-            <Tabs attributeName="collections" />
+            <Tabs
+              attributeName="collections"
+              transformItems={items =>
+                items.sort(
+                  (a, b) =>
+                    collectionsOrder.indexOf(a.label) >
+                    collectionsOrder.indexOf(b.label)
+                )
+              }
+            />
             <ClearAll />
           </div>
         </div>

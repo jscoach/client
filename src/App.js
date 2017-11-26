@@ -36,6 +36,15 @@ const sortOptions = [
   { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated" }
 ];
 
+const collectionsOrder = [
+  'React',
+  'React Native',
+  'React VR',
+  'Webpack',
+  'Babel',
+  'PostCSS'
+];
+
 const filterDelimiter = ";";
 
 const stripFalsy = object => pickBy(object, identity);
@@ -141,6 +150,7 @@ class App extends Component {
           <Configure attributesToRetrieve={attributesToRetrieve} />
           <Search
             sortOptions={sortOptions}
+            collectionsOrder={collectionsOrder}
             currentCollection={currentCollection}
             isHome={isHome}
           />
