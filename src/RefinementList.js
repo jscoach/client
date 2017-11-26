@@ -26,7 +26,7 @@ const CheckBoxItem = ({ label, value, count, isRefined, refine }) => (
 const RefinementList = connectRefinementList(
   ({ items, attributeName, refine, createURL }) => (
     <div>
-      {items.length === 0 && <span className="text-grey-dark">No {attributeName}.</span>}
+      {items.length === 0 && <span className="text-grey-dark">No filters available</span>}
 
       {items.map(item => (
         <CheckBoxItem

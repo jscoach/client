@@ -28,7 +28,7 @@ const Menu = ({
 }) => (
   <div>
     {items.length === 0 && (
-      <span className="text-grey-dark">No {attributeName}.</span>
+      <span className="text-grey-dark">No filters available</span>
     )}
 
     {items.length > 0 && (

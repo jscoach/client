@@ -30,7 +30,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         </strong>
       </Link>
       <em className="roman text-grey-dark">
-        v{hit.latestRelease} published{" "}
+        v{hit.latestRelease} { hit.modifiedAt === hit.publishedAt ? "published " : "updated " }
         <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
       </em>
     </div>

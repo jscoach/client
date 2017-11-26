@@ -1,7 +1,7 @@
 import React from "react";
 import { connectMenu } from "react-instantsearch/connectors";
 
-const TabItem = ({ label, value, count, isRefined, refine, createURL }) => (
+const TabItem = ({ label, value, isRefined, refine, createURL }) => (
   <a
     href={createURL(value)}
     onClick={e => {
@@ -11,20 +11,15 @@ const TabItem = ({ label, value, count, isRefined, refine, createURL }) => (
     className="no-underline text-black mb-2 inline-block"
     key={label}
   >
-    <span className={`mr-1 ml-3 ${isRefined && "font-semibold"}`}>{label}</span>
-    {count && (
-      <span className="mr-1 px-2 rounded-full bg-grey-light text-grey-dark text-sm">
-        {count}
-      </span>
-    )}
+    <span className={`mx-2 ${isRefined && "font-semibold"}`}>{label}</span>
   </a>
 );
 
 const Tabs = ({ attributeName, currentRefinement, items, ...otherProps }) => (
-  <div>
+  <div className="inline-block">
     {items.length > 0 && (
       <TabItem
-        label="Everything"
+        label="All"
         value={null}
         isRefined={!currentRefinement}
         {...otherProps}

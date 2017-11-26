@@ -14,87 +14,95 @@ import Topbar from "./Topbar";
 import jess from "./images/jess.svg";
 import jessSmall from "./images/jess-small.svg";
 
-const Search = ({ isHome, sortOptions }) => {
-  return (
-    <div>
-      <Topbar />
+const Search = ({ isHome, currentCollection, sortOptions }) => (
+  <div>
+    <Topbar />
 
+    <div
+      className={
+        isHome
+          ? "flex justify-center items-center"
+          : "bg-grey-lighter border-b overflow-hidden"
+      }
+      style={isHome ? { minHeight: "calc(100vh - 100px)" } : {}}
+    >
       <div
         className={
           isHome
-            ? "flex justify-center items-center"
-            : "bg-grey-lighter border-b overflow-hidden"
+            ? "text-center m-8 select-none max-w-md w-full"
+            : "relative m-4 mb-1"
         }
-        style={isHome ? { minHeight: "calc(100vh - 100px)" } : {}}
       >
-        <div
-          className={
-            isHome
-              ? "text-center p-8 select-none max-w-md w-full"
-              : "relative m-4 mb-1"
-          }
-        >
-          {isHome ? (
+        {isHome ? (
+          <img
+            src={jess}
+            width="128"
+            height="152"
+            className="m-8"
+            alt="Coach Jess welcomes you!"
+            draggable="false"
+          />
+        ) : (
+          <a href="/">
             <img
-              src={jess}
-              width="128"
-              height="152"
-              className="m-8"
-              alt="Coach Jess welcomes you!"
+              src={jessSmall}
+              width="50"
+              height="50"
+              className="absolute pin-l"
               draggable="false"
+              alt="Coach Jess welcomes you!"
             />
-          ) : (
-            <a href="/">
-              <img
-                src={jessSmall}
-                width="50"
-                height="50"
-                className="absolute pin-l"
-                draggable="false"
-                alt="Coach Jess welcomes you!"
-              />
-            </a>
-          )}
+          </a>
+        )}
 
-          <div className={isHome ? "" : "ml-16 max-w-md"}>
-            <SearchBox />
-            <div className="mt-4">
-              <Tabs attributeName="collections" />
-            </div>
+        <div className={isHome ? "placeholder-center" : "ml-16 max-w-md"}>
+          <SearchBox />
+          <div className={isHome ? "mt-4" : "mt-4 ml-1"}>
+            <Tabs attributeName="collections" />
           </div>
         </div>
       </div>
+    </div>
 
-      {!isHome && (
-        <div className="flex p-4">
-          <div className="ml-16 max-w-md w-full">
-            <Hits />
-            <SearchPoweredBy />
-          </div>
+    {!isHome && (
+      <div className="flex p-4 pt-3">
+        <div className="ml-16 max-w-md w-full">
+          <SortBy
+            items={sortOptions}
+            defaultRefinement={sortOptions[0].value}
+          />
+          <Hits />
+          <SearchPoweredBy />
+        </div>
 
-          <div className="m-4 flex-none">
+        <div className="ml-8 pl-4 mt-8 pt-3 flex-none">
+          <ClearAll />
+
+          {currentCollection === "React" && (
             <div className="mb-8">
-              <Panel title="Categories">
-                <Menu attributeName="categories" />
+              <Panel title="Features">
+                <RefinementList attributeName="features" operator="and" />
               </Panel>
             </div>
+          )}
 
+          {currentCollection === "React Native" && (
             <div className="mb-8">
-              <Panel title="Filters">
-                <RefinementList attributeName="filters" operator="and" />
+              <Panel title="Platforms">
+                <RefinementList attributeName="platforms" operator="and" />
               </Panel>
             </div>
+          )}
 
-            <SortBy
-              items={sortOptions}
-              defaultRefinement={sortOptions[0].value}
-            />
-            <ClearAll />
+          <div className="mb-8">
+            <Panel title="Categories">
+              <Menu attributeName="categories" showMore limitMax={25} />
+            </Panel>
           </div>
         </div>
-      )}
-    </div>
-  );
-};
+      </div>
+    )}
+  </div>
+);
 
 export default Search;

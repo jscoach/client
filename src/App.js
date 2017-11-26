@@ -19,11 +19,12 @@ const attributesToRetrieve = [
   "dependents",
   "description",
   "downloads",
-  "filters",
+  "features",
   "latestRelease",
   "license",
   "modifiedAt",
   "name",
+  "platforms",
   "publishedAt",
   "repositoryName",
   "repositoryUser",
@@ -32,7 +33,7 @@ const attributesToRetrieve = [
 
 const sortOptions = [
   { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "relevance" },
-  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated at" }
+  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated" }
 ];
 
 const filterDelimiter = ";";
@@ -49,10 +50,14 @@ const createURL = state => {
     sort: selectedSortOption && selectedSortOption.label,
     collection: state.menu && state.menu.collections,
     category: state.menu && state.menu.categories,
-    filters:
+    features:
       state.refinementList &&
-      state.refinementList.filters &&
-      state.refinementList.filters.join(filterDelimiter)
+      state.refinementList.features &&
+      state.refinementList.features.join(filterDelimiter),
+    platforms:
+      state.refinementList &&
+      state.refinementList.platforms &&
+      state.refinementList.platforms.join(filterDelimiter)
   });
 
   return qs.stringify(params, { format: "RFC1738", addQueryPrefix: true });
@@ -75,7 +80,8 @@ const urlToSearchState = location => {
       categories: params.category
     }),
     refinementList: stripFalsy({
-      filters: params.filters && params.filters.split(filterDelimiter)
+      features: params.features && params.features.split(filterDelimiter),
+      platforms: params.platforms && params.platforms.split(filterDelimiter)
     })
   });
 };
@@ -104,6 +110,11 @@ class App extends Component {
       window.location.search === "" &&
       this.state.searchState.page === undefined;
 
+    const currentCollection =
+      this.state.searchState &&
+      this.state.searchState.menu &&
+      this.state.searchState.menu.collections;
+
     return (
       <div
         className={`min-h-screen font-sans tracking-tight ${
@@ -119,7 +130,11 @@ class App extends Component {
           createURL={createURL}
         >
           <Configure attributesToRetrieve={attributesToRetrieve} />
-          <Search sortOptions={sortOptions} isHome={isHome} />
+          <Search
+            sortOptions={sortOptions}
+            currentCollection={currentCollection}
+            isHome={isHome}
+          />
         </InstantSearch>
 
         <Route path="/:user?/:name" component={LibraryDetails} />

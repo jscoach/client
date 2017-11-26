@@ -2,9 +2,9 @@ import React from "react";
 import { connectSortBy } from "react-instantsearch/connectors";
 
 const SortBy = connectSortBy(({ items, currentRefinement, refine }) => (
-  <div className="inline-block relative text-sm">
+  <div className="inline-block relative m-3 mt-0 text-sm">
     <select
-      className="block appearance-none w-full bg-white border hover:bg-grey-lightest cursor-pointer px-3 py-2 pr-6 rounded"
+      className="block appearance-none bg-transparent text-grey-dark cursor-pointer pr-4 tracking-tight"
       value={currentRefinement}
       onChange={e => {
         e.preventDefault();
@@ -17,7 +17,7 @@ const SortBy = connectSortBy(({ items, currentRefinement, refine }) => (
         </option>
       ))}
     </select>
-    <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey">
+    <div className="pointer-events-none absolute pin-y pin-r flex items-center text-grey-dark">
       <svg
         className="h-4 w-4"
         xmlns="http://www.w3.org/2000/svg"
