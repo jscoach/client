@@ -1,17 +1,16 @@
 import React from "react";
 import { connectCurrentRefinements } from "react-instantsearch/connectors";
 
-const ClearAll = connectCurrentRefinements(({ items, refine }) => (
-  <div>
-    {items.length > 0 && (
+const ClearAll = connectCurrentRefinements(
+  ({ items, refine }) =>
+    items.length > 0 && (
       <button
         onClick={() => refine(items)}
-        className="bg-white hover:bg-grey-lighter border text-sm py-2 px-3 mb-8 rounded shadow"
+        className="tracking-tight mb-2 float-right text-orange-dark"
       >
-        Clear all filters
+        Clear filters
       </button>
-    )}
-  </div>
-));
+    )
+);
 
 export default ClearAll;

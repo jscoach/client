@@ -59,6 +59,7 @@ const Search = ({ isHome, currentCollection, sortOptions }) => (
           <SearchBox />
           <div className={isHome ? "mt-4" : "mt-4 ml-1"}>
             <Tabs attributeName="collections" />
+            <ClearAll />
           </div>
         </div>
       </div>
@@ -76,8 +77,6 @@ const Search = ({ isHome, currentCollection, sortOptions }) => (
         </div>
 
         <div className="ml-8 pl-4 mt-8 pt-3 flex-none">
-          <ClearAll />
-
           {currentCollection === "React" && (
             <div className="mb-8">
               <Panel title="Features">
