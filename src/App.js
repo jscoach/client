@@ -105,6 +105,15 @@ class App extends Component {
     );
   };
 
+  componentWillReceiveProps(props) {
+    if (
+      props.location.pathname !== this.props.location.pathname ||
+      props.location.search !== this.props.location.search
+    ) {
+      this.setState({ searchState: urlToSearchState(props.location) });
+    }
+  }
+
   render() {
     const isHome =
       window.location.search === "" &&
