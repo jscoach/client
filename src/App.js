@@ -19,7 +19,7 @@ const attributesToRetrieve = [
   "dependents",
   "description",
   "downloads",
-  "features",
+  "styling",
   "latestRelease",
   "license",
   "modifiedAt",
@@ -37,15 +37,15 @@ const sortOptions = [
 ];
 
 const collectionsOrder = [
-  'React',
-  'React Native',
-  'React VR',
-  'Webpack',
-  'Babel',
-  'PostCSS'
+  "React",
+  "React Native",
+  "React VR",
+  "Webpack",
+  "Babel",
+  "PostCSS"
 ];
 
-const filterDelimiter = ";";
+const filterDelimiter = ".";
 
 const stripFalsy = object => pickBy(object, identity);
 
@@ -59,10 +59,7 @@ const createURL = state => {
     sort: selectedSortOption && selectedSortOption.label,
     collection: state.menu && state.menu.collections,
     category: state.menu && state.menu.categories,
-    features:
-      state.refinementList &&
-      state.refinementList.features &&
-      state.refinementList.features.join(filterDelimiter),
+    styling: state.menu && state.menu.styling,
     platforms:
       state.refinementList &&
       state.refinementList.platforms &&
@@ -86,10 +83,10 @@ const urlToSearchState = location => {
     sortBy: selectedSortOption && selectedSortOption.value,
     menu: stripFalsy({
       collections: params.collection,
-      categories: params.category
+      categories: params.category,
+      styling: params.styling
     }),
     refinementList: stripFalsy({
-      features: params.features && params.features.split(filterDelimiter),
       platforms: params.platforms && params.platforms.split(filterDelimiter)
     })
   });

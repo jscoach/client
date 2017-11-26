@@ -4,7 +4,8 @@ import ClearAll from "./ClearAll";
 import Hits from "./Hits";
 import Menu from "./Menu";
 import Panel from "./Panel";
-import RefinementList from "./RefinementList";
+import CheckboxList from "./CheckboxList";
+import RadioList from "./RadioList";
 import SearchBox from "./SearchBox";
 import SearchPoweredBy from "./SearchPoweredBy";
 import SortBy from "./SortBy";
@@ -93,8 +94,8 @@ const Search = ({
         <div className="ml-8 pl-4 mt-8 pt-3 flex-none">
           {currentCollection === "React" && (
             <div className="mb-8">
-              <Panel title="Features">
-                <RefinementList attributeName="features" operator="and" />
+              <Panel title="Styling">
+                <RadioList attributeName="styling" operator="and" />
               </Panel>
             </div>
           )}
@@ -102,7 +103,7 @@ const Search = ({
           {currentCollection === "React Native" && (
             <div className="mb-8">
               <Panel title="Platforms">
-                <RefinementList attributeName="platforms" operator="and" />
+                <CheckboxList attributeName="platforms" />
               </Panel>
             </div>
           )}
