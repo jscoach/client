@@ -5479,6 +5479,16 @@ pretty-format@^20.0.3:
     ansi-regex "^2.1.1"
     ansi-styles "^3.0.0"
 
+primer-support@4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/primer-support/-/primer-support-4.5.0.tgz#4354e6527ab2a4fb8e33b61b4c6dfd1af5410e63"
+
+primer-tooltips@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/primer-tooltips/-/primer-tooltips-1.5.0.tgz#18528a59d9a0e4edb24a6dfa869bf400e14b6e79"
+  dependencies:
+    primer-support "4.5.0"
+
 private@^0.1.6, private@^0.1.7:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
