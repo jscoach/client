@@ -95,13 +95,16 @@ const urlToSearchState = location => {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchState: urlToSearchState(props.location) };
+    this.state = {
+      isHome: window.location.search === "",
+      searchState: urlToSearchState(props.location)
+    };
     this.updateURL = throttle(this.updateURL, 1000);
   }
 
   onSearchStateChange = searchState => {
     this.updateURL(searchState);
-    this.setState({ searchState });
+    this.setState({ isHome: false, searchState });
   };
 
   updateURL = searchState => {
@@ -116,14 +119,15 @@ class App extends Component {
       props.location.pathname !== this.props.location.pathname ||
       props.location.search !== this.props.location.search
     ) {
-      this.setState({ searchState: urlToSearchState(props.location) });
+      this.setState({
+        isHome: false,
+        searchState: urlToSearchState(props.location)
+      });
     }
   }
 
   render() {
-    const isHome =
-      window.location.search === "" &&
-      this.state.searchState.page === undefined;
+    const isHome = this.state.isHome;
 
     const currentCollection =
       this.state.searchState &&
