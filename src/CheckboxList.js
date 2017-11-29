@@ -15,7 +15,7 @@ const CheckBoxItem = ({ label, value, count, isRefined, refine }) => (
       />
       {label}
     </label>
-    {count && (
+    {count > 0 && (
       <span className="px-2 rounded-full bg-grey-light text-grey-dark text-sm">
         {count}
       </span>

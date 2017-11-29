@@ -12,7 +12,7 @@ const MenuItem = ({ label, value, count, isRefined, refine, createURL }) => (
     key={label}
   >
     <span className={`mr-2 ${isRefined && "font-semibold"}`}>{label}</span>
-    {count && (
+    {count > 0 && (
       <span className="px-2 rounded-full bg-grey-light text-grey-dark text-sm">
         {count}
       </span>
