@@ -11,8 +11,6 @@ import qs from "qs";
 import Search from "./Search";
 import LibraryDetails from "./LibraryDetails";
 
-import "./tailwind.css";
-
 const attributesToRetrieve = [
   "categories",
   "collections",
