@@ -11,6 +11,7 @@ import SearchPoweredBy from "./SearchPoweredBy";
 import SortBy from "./SortBy";
 import Tabs from "./Tabs";
 import Topbar from "./Topbar";
+import orderBy from "lodash.orderby";
 
 import jess from "./images/jess.svg";
 import jessSmall from "./images/jess-small.svg";
@@ -110,7 +111,14 @@ const Search = ({
 
           <div className="mb-8">
             <Panel title="Categories">
-              <Menu attributeName="categories" showMore limitMax={25} />
+              <Menu
+                attributeName="categories"
+                showMore
+                limitMax={25}
+                transformItems={items =>
+                  orderBy(items, ["label", "count"], ["asc", "desc"])
+                }
+              />
             </Panel>
           </div>
         </div>
