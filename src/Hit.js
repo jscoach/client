@@ -26,7 +26,7 @@ const thresholds = {
 
 const CompatibilityIcon = ({ label, children }) => (
   <span
-    className={`mr-2 z-20 tooltipped tooltipped-s tooltipped-multiline`}
+    className="mr-2 tooltipped tooltipped-s tooltipped-no-delay"
     aria-label={label}
     style={{ verticalAlign: -3 }}
   >
@@ -111,20 +111,21 @@ const Hit = withRouter(({ hit, history, location }) => (
       <Highlight attributeName="description" hit={hit} tagName="mark" />
     </p>
 
-    <div>
+    <div className="cursor-default z-20 relative inline-block">
       {hit.license && (
         <a
-          className="inline-block mr-4 px-1 border rounded-sm text-sm truncate align-bottom no-underline text-black z-20 relative"
-          style={{ maxWidth: 100 }}
+          className="mr-4 px-1 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay border rounded-sm text-sm truncate align-bottom no-underline text-black z-20 relative"
+          style={{ maxWidth: 100, verticalAlign: 1 }}
           target="_blank"
           href={`https://spdx.org/licenses/${hit.license}.html`}
+          aria-label={`Licensed under ${hit.license}\n(click for learn more)`}
         >
           {hit.license}
         </a>
       )}
 
       <span
-        className={`mr-4 z-20 tooltipped tooltipped-s cursor-default ${
+        className={`mr-4 tooltipped tooltipped-s tooltipped-no-delay ${
           hit.stars > thresholds.stars ? "text-orange-dark" : "text-grey-dark"
         }`}
         aria-label={`${hit.stars} ${pluralize(hit.stars, "star")} on GitHub${
@@ -142,7 +143,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         {humanizedNumber(hit.stars)}
       </span>
       <span
-        className={`mr-4 z-20 tooltipped tooltipped-s tooltipped-multiline cursor-default ${
+        className={`mr-4 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay ${
           hit.downloads > thresholds.downloads
             ? "text-teal-dark"
             : "text-grey-dark"
@@ -150,7 +151,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         aria-label={`${hit.downloads} ${pluralize(
           hit.downloads,
           "download"
-        )} from NPM in the last 30 days${
+        )} from npm\nin the last 30 days${
           hit.downloads > averages.downloads ? " (above average)" : ""
         }`}
       >
@@ -165,7 +166,7 @@ const Hit = withRouter(({ hit, history, location }) => (
         {humanizedNumber(hit.downloads)}
       </span>
       <span
-        className={`mr-4 z-20 tooltipped tooltipped-s tooltipped-multiline cursor-default ${
+        className={`mr-4 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay ${
           hit.dependents > thresholds.dependents
             ? "text-purple-dark"
             : "text-grey-dark"
@@ -175,7 +176,7 @@ const Hit = withRouter(({ hit, history, location }) => (
           "package",
           "packages"
         )} depend on this package${
-          hit.dependents > averages.dependents ? " (above average)" : ""
+          hit.dependents > averages.dependents ? "\n(above average)" : ""
         }`}
       >
         <svg
