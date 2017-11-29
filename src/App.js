@@ -22,7 +22,7 @@ const attributesToRetrieve = [
   "license",
   "modifiedAt",
   "name",
-  "platforms",
+  "compatibility",
   "publishedAt",
   "repositoryName",
   "repositoryUser",
@@ -57,11 +57,14 @@ const createURL = state => {
     sort: selectedSortOption && selectedSortOption.label,
     collection: state.menu && state.menu.collections,
     category: state.menu && state.menu.categories,
-    styling: state.menu && state.menu.styling,
-    platforms:
+    styling:
       state.refinementList &&
-      state.refinementList.platforms &&
-      state.refinementList.platforms.join(filterDelimiter)
+      state.refinementList.styling &&
+      state.refinementList.styling.join(filterDelimiter),
+    compatibility:
+      state.refinementList &&
+      state.refinementList.compatibility &&
+      state.refinementList.compatibility.join(filterDelimiter)
   });
 
   return qs.stringify(params, { format: "RFC1738", addQueryPrefix: true });
@@ -81,11 +84,12 @@ const urlToSearchState = location => {
     sortBy: selectedSortOption && selectedSortOption.value,
     menu: stripFalsy({
       collections: params.collection,
-      categories: params.category,
-      styling: params.styling
+      categories: params.category
     }),
     refinementList: stripFalsy({
-      platforms: params.platforms && params.platforms.split(filterDelimiter)
+      styling: params.styling && params.styling.split(filterDelimiter),
+      compatibility:
+        params.compatibility && params.compatibility.split(filterDelimiter)
     })
   });
 };
@@ -132,6 +136,8 @@ class App extends Component {
       this.state.searchState.menu &&
       this.state.searchState.menu.collections;
 
+    const currentQuery = this.state.searchState && this.state.searchState.query;
+
     return (
       <div
         className={`min-h-screen font-sans tracking-tight ${
@@ -141,7 +147,7 @@ class App extends Component {
         <InstantSearch
           appId={process.env.REACT_APP_ALGOLIA_APP_ID}
           apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
-          indexName={process.env.REACT_APP_INDEX_BY_RELEVANCE}
+          indexName={process.env.REACT_APP_INDEX_BY_UPDATED_AT}
           searchState={this.state.searchState}
           onSearchStateChange={this.onSearchStateChange}
           createURL={createURL}
@@ -151,6 +157,7 @@ class App extends Component {
             sortOptions={sortOptions}
             collectionsOrder={collectionsOrder}
             currentCollection={currentCollection}
+            currentQuery={currentQuery}
             isHome={isHome}
           />
         </InstantSearch>

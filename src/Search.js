@@ -5,7 +5,6 @@ import Hits from "./Hits";
 import Menu from "./Menu";
 import Panel from "./Panel";
 import CheckboxList from "./CheckboxList";
-import RadioList from "./RadioList";
 import SearchBox from "./SearchBox";
 import SearchPoweredBy from "./SearchPoweredBy";
 import SortBy from "./SortBy";
@@ -19,6 +18,7 @@ import jessSmall from "./images/jess-small.svg";
 const Search = ({
   isHome,
   currentCollection,
+  currentQuery,
   collectionsOrder,
   sortOptions
 }) => (
@@ -86,7 +86,11 @@ const Search = ({
         <div className="ml-16 max-w-md w-full">
           <SortBy
             items={sortOptions}
-            defaultRefinement={sortOptions[0].value}
+            defaultRefinement={
+              // Sort by relevance by default if it's a search, or updated at if browsing
+              // Make sure the default matches the indexName prop on the InstantSearch component
+              sortOptions[currentQuery ? 0 : 1].value
+            }
           />
           <Hits />
           <SearchPoweredBy />
@@ -96,15 +100,26 @@ const Search = ({
           {currentCollection === "React" && (
             <div className="mb-8">
               <Panel title="Styling">
-                <RadioList attributeName="styling" operator="and" />
+                <CheckboxList
+                  attributeName="styling"
+                  operator="and"
+                  transformItems={items =>
+                    orderBy(items, ["label", "count"], ["asc", "desc"])
+                  }
+                />
               </Panel>
             </div>
           )}
 
           {currentCollection === "React Native" && (
             <div className="mb-8">
-              <Panel title="Platforms">
-                <CheckboxList attributeName="platforms" />
+              <Panel title="Compatibility">
+                <CheckboxList
+                  attributeName="compatibility"
+                  transformItems={items =>
+                    orderBy(items, [item => item.label.toLowerCase()], ["asc"])
+                  }
+                />
               </Panel>
             </div>
           )}
