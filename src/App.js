@@ -26,7 +26,8 @@ const attributesToRetrieve = [
   "publishedAt",
   "repositoryName",
   "repositoryUser",
-  "stars"
+  "stars",
+  "communityPick"
 ];
 
 const sortOptions = [

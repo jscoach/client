@@ -85,11 +85,15 @@ const Hit = withRouter(({ hit, history, location }) => (
       {hit.collections.length > 0 && (
         <div className="text-grey text-sm mb-1">
           <span className="pr-2">{hit.collections.join(", ")}</span>
-          {(hit.stars > averages.stars ||
-            hit.downloads > averages.downloads ||
-            hit.dependents > averages.dependents) && (
-            <span className="text-green">Popular</span>
+          {hit.communityPick && (
+            <span className="text-green">Community pick</span>
           )}
+          {!hit.communityPick &&
+            (hit.stars > averages.stars ||
+              hit.downloads > averages.downloads ||
+              hit.dependents > averages.dependents) && (
+              <span className="text-green pr-2">Popular</span>
+            )}
         </div>
       )}
       <Link
@@ -194,7 +198,10 @@ const Hit = withRouter(({ hit, history, location }) => (
         android={hit.compatibility.indexOf("Android") >= 0}
         ios={hit.compatibility.indexOf("iOS") >= 0}
         windows={hit.compatibility.indexOf("Windows") >= 0}
-        css={hit.styling.indexOf("Inline Styles") < 0 && hit.collections.indexOf("React") >= 0}
+        css={
+          hit.styling.indexOf("Inline Styles") < 0 &&
+          hit.collections.indexOf("React") >= 0
+        }
         repositoryUrl={`https://github.com/${hit.repositoryUser}/${
           hit.repositoryName
         }`}
