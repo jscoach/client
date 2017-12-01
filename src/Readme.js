@@ -11,7 +11,7 @@ const Header = hit => (
   <div className="bg-grey-lighter border-b border-grey-light px-8 py-4">
     <a
       className="float-right no-underline text-white bg-blue hover:bg-blue-dark border border-blue-darker py-2 px-4 rounded ml-4 mb-2"
-      href={`https://github.com/${hit.repositoryUser}/${hit.repositoryName}`}
+      href={hit.repositoryUrl}
       target="_blank"
     >
       View on GitHub
@@ -82,20 +82,43 @@ class Readme extends Component {
     const hit =
       searchResults && searchResults.hits.find(hit => hit.name === id);
 
+    if (hit)
+      hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${
+        hit.repositoryName
+      }`;
+
     return (
-      <div className="fixed pin overflow-auto z-30 cursor-pointer" onClick={this.handleDismiss}>
+      <div
+        className="fixed pin overflow-auto z-30 cursor-pointer"
+        onClick={this.handleDismiss}
+      >
         <div className="fixed bg-black pin pointer-events-none opacity-25" />
         {hit && (
           <div
-            className="relative bg-white ml-auto cursor-auto"
+            className="relative bg-white ml-auto cursor-auto min-h-full"
             onClick={this.handleClick}
-            style={{ boxShadow: "-1px 0 0 rgba(0,0,0,.2), 0 0 18px 4px rgba(0,0,0,.15)", maxWidth: 890 }}
+            style={{
+              boxShadow:
+                "-1px 0 0 rgba(0,0,0,.2), 0 0 18px 4px rgba(0,0,0,.15)",
+              maxWidth: 890
+            }}
           >
             <Header {...hit} />
             <div
               className="p-8"
               dangerouslySetInnerHTML={{ __html: hit && hit.readme }}
             />
+            {hit.readmeWasTruncated && (
+              <div className="w-full px-8 pb-6 text-lg text-center">
+                <a
+                  className="block py-3 text-blue font-semibold no-underline border bg-white hover:bg-grey-lighter rounded shadow"
+                  href={hit.repositoryUrl}
+                  target="_blank"
+                >
+                  Read more
+                </a>
+              </div>
+            )}
             <MetaTags {...hit} />
           </div>
         )}

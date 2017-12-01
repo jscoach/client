@@ -1,6 +1,7 @@
 .markdown-body {
   font-family: inherit !important;
   line-height: 1.4 !important;
+  color: #000;
 }
 
 /* We convert headings into anchored hyperlinks, but hide it visually for now */
@@ -49,7 +50,26 @@ img[data-canonical-src*='nodei.co'],
 img[data-canonical-src*='saucelabs.com'],
 img[data-canonical-src*='secure.travis-ci.org'],
 img[data-canonical-src*='travis-ci.org'] {
-  background: #e6e6e6;
+  background: #f7f7f7;
   min-height: 20px;
   min-width: 20px;
+}
+
+/* Other aesthetic changes */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body table th,
+.markdown-body table td {
+  border-color: #e6e6e6;
+}
+
+.markdown-body hr {
+  background-color: #e6e6e6;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre,
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f7f7f7;
 }
