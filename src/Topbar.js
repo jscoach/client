@@ -9,10 +9,10 @@ const Topbar = () => (
     <div className="flex-1" />
 
     <a
-      href="https://legacy.js.coach"
+      href="https://classic.js.coach"
       className="no-underline text-orange-dark p-2"
     >
-      Back to legacy
+      Back to classic
     </a>
     <a
       href="https://github.com/dmfrancisco/JS.coach/blob/master/CONTRIBUTING.md"
