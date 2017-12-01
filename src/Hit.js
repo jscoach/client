@@ -122,7 +122,7 @@ const Hit = withRouter(({ hit, history, location }) => (
           style={{ maxWidth: 100, verticalAlign: 1 }}
           target="_blank"
           href={`https://spdx.org/licenses/${hit.license}.html`}
-          aria-label={`Licensed under ${hit.license}\n(click for learn more)`}
+          aria-label={`Licensed under ${hit.license}\n(click to learn more)`}
         >
           {hit.license}
         </a>
@@ -179,7 +179,11 @@ const Hit = withRouter(({ hit, history, location }) => (
           hit.dependents,
           "package",
           "packages"
-        )} depend on this package${
+        )} ${pluralize(
+          hit.dependents,
+          "depends",
+          "depend"
+        )} on this package${
           hit.dependents > averages.dependents ? "\n(above average)" : ""
         }`}
       >
