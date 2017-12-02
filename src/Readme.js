@@ -20,6 +20,15 @@ const MetaTags = hit => (
   </Helmet>
 );
 
+const NotFound = () => (
+  <div
+    className="relative select-none text-center"
+    style={{ top: "50%", transform: "translateY(-50%)" }}>
+    <strong className="block text-2xl text-grey-light">404</strong>
+    <span className="text-grey-dark text-xl">Página não encontrada</span>
+  </div>
+);
+
 class Readme extends Component {
   handleDismiss = e => {
     e.preventDefault();
@@ -53,7 +62,7 @@ class Readme extends Component {
   }
 
   render() {
-    const { searchResults, id } = this.props;
+    const { searchResults, id, searching } = this.props;
     const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
 
     if (hit) hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}`;
@@ -61,6 +70,9 @@ class Readme extends Component {
     return (
       <div className="fixed pin overflow-auto z-30 cursor-pointer" onClick={this.handleDismiss}>
         <div className="fixed bg-grey-darkest pin pointer-events-none" style={{ opacity: 0.9 }} />
+
+        {!searching && !hit && <NotFound />}
+
         {hit && (
           <div
             className="relative ml-auto cursor-auto p-6 mt-8"
