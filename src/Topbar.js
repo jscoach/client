@@ -1,7 +1,7 @@
 import React from "react";
 
 const Topbar = () => (
-  <div className="bg-orange-light flex items-center h-10 px-2">
+  <div className="bg-orange-light flex items-center h-10 px-2 select-none">
     <a href="/" className="no-underline text-black p-2">
       <h1 className="text-xl font-bold">JS.coach</h1>
     </a>

@@ -60,10 +60,7 @@ class Readme extends Component {
 
     return (
       <div className="fixed pin overflow-auto z-30 cursor-pointer" onClick={this.handleDismiss}>
-        <div
-          className="fixed bg-grey-darkest pin pointer-events-none opacity-75"
-          style={{ opacity: 0.9 }}
-        />
+        <div className="fixed bg-grey-darkest pin pointer-events-none" style={{ opacity: 0.9 }} />
         {hit && (
           <div
             className="relative ml-auto cursor-auto p-6 mt-8"
@@ -78,17 +75,15 @@ class Readme extends Component {
               <div className="p-8 bg-white rounded-b">
                 <div dangerouslySetInnerHTML={{ __html: hit && hit.readme }} />
                 {hit.readmeWasTruncated && (
-                  <div className="w-full pt-6 text-lg text-center">
-                    <a
-                      className="block py-3 text-blue font-semibold no-underline border bg-white hover:bg-grey-lighter rounded shadow"
-                      href={hit.repositoryUrl}
-                      target="_blank">
+                  <div className="w-full pt-6">
+                    <a className="btn-secondary" href={hit.repositoryUrl} target="_blank">
                       Read more
                     </a>
                   </div>
                 )}
               </div>
             </div>
+
             <MetaTags {...hit} />
           </div>
         )}

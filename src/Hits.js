@@ -32,7 +32,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => (
 
     {hasMore && (
       <button
-        className="text-blue text-lg font-semibold border p-3 mt-3 w-full bg-white hover:bg-grey-lighter rounded shadow"
+        className="btn-secondary mt-3 w-full"
         onClick={refine}
         disabled={!hasMore}>
         Load More

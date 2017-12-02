@@ -24,7 +24,7 @@ const Search = ({ isHome, currentCollection, currentQuery, collectionsOrder, sor
         isHome ? "flex justify-center items-center" : "bg-grey-lighter border-b overflow-hidden"
       }
       style={isHome ? { minHeight: "calc(100vh - 100px)" } : {}}>
-      <div className={isHome ? "text-center m-8 select-none max-w-md w-full" : "relative m-4 mb-1"}>
+      <div className={isHome ? "text-center m-8 max-w-md w-full select-none" : "relative m-4 mb-1 select-none"}>
         {isHome ? (
           <img
             src={jess}

@@ -29,6 +29,25 @@
  * @import "components/forms";
  */
 
+.btn-secondary {
+  @apply
+    .bg-white
+    .block
+    .border
+    .font-bold
+    .no-underline
+    .p-3
+    .rounded
+    .shadow
+    .text-blue
+    .text-center
+    .text-lg;
+}
+
+.btn-secondary:hover {
+  @apply .bg-grey-lighter;
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
@@ -103,4 +122,8 @@ div[data-count]:before {
   text-align: right;
   top: -0.5rem;
   width: 4rem;
+}
+
+::selection {
+  background: rgba(66,133,244,.15);
 }
