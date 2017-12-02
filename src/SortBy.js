@@ -11,7 +11,7 @@ const SortBy = connectSortBy(({ items, currentRefinement, refine }) => (
         refine(e.target.value);
       }}>
       {items.map(item => (
-        <option key={item.value} value={item.value}>
+        <option key={item.value} value={item.value} className="text-black">
           Sort by {item.label}
         </option>
       ))}

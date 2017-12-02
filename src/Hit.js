@@ -91,8 +91,8 @@ const CompatibilityIcon = ({ label, children }) => (
   </span>
 );
 
-const CompatibilityIcons = ({ repositoryUrl, android, ios, windows, css }) => (
-  <div className="inline-block text-indigo-dark ml-1">
+const CompatibilityIcons = ({ expanded, repositoryUrl, android, ios, windows, css }) => (
+  <div className={`inline-block ml-1 ${expanded ? "text-indigo-light" : "text-indigo-dark"}`}>
     {android && (
       <CompatibilityIcon label="Compatible with Android">
         <path d="M4,14 L5,14 L5,16.5 C5,17.33 5.67,18 6.5,18 C7.33,18 8,17.33 8,16.5 L8,14 L10,14 L10,16.5 C10,17.33 10.67,18 11.5,18 C12.33,18 13,17.33 13,16.5 L13,14 L14,14 C14.55,14 15,13.55 15,13 L15,9 L3,9 L3,13 C3,13.55 3.45,14 4,14 Z M0,10.5 L0,13.5 C0,14.33 0.446666667,15 1,15 C1.55333333,15 2,14.33 2,13.5 L2,10.5 C2,9.67 1.55333333,9 1,9 C0.446666667,9 0,9.67 0,10.5 Z M16,10.5 L16,13.5 C16,14.33 16.4466667,15 17,15 C17.5533333,15 18,14.33 18,13.5 L18,10.5 C18,9.67 17.5533333,9 17,9 C16.4466667,9 16,9.67 16,10.5 Z M12.53,3.16 L13.83,1.86 C14.03,1.66 14.03,1.35 13.83,1.15 C13.63,0.95 13.32,0.95 13.12,1.15 L11.64,2.63 C10.85,2.23 9.95,2 9,2 C8.04,2 7.14,2.23 6.34,2.63 L4.85,1.15 C4.65,0.95 4.34,0.95 4.14,1.15 C3.94,1.35 3.94,1.66 4.14,1.86 L5.45,3.17 C3.97,4.26 3,6.01 3,8 L15,8 C15,6.01 14.03,4.25 12.53,3.16 L12.53,3.16 Z M7,6 L6,6 L6,5 L7,5 L7,6 L7,6 Z M12,6 L11,6 L11,5 L12,5 L12,6 L12,6 Z" />
@@ -179,6 +179,7 @@ const Hit = withRouter(({ hit, location, expanded }) => (
       <Dependents count={hit.dependents} />
 
       <CompatibilityIcons
+        expanded={expanded}
         android={hit.compatibility.indexOf("Android") >= 0}
         ios={hit.compatibility.indexOf("iOS") >= 0}
         windows={hit.compatibility.indexOf("Windows") >= 0}
