@@ -12,7 +12,7 @@ const Topbar = () => (
       Back to classic
     </a>
     <a
-      href="https://github.com/dmfrancisco/JS.coach/blob/master/CONTRIBUTING.md"
+      href="https://github.com/jscoach/support/blob/master/CONTRIBUTING.md"
       className="no-underline text-black p-2">
       Submit a package
     </a>
@@ -30,7 +30,7 @@ const Topbar = () => (
       </svg>
     </a>
     <a
-      href="https://github.com/dmfrancisco/JS.coach/"
+      href="https://github.com/jscoach/support/"
       className="no-underline text-black p-2 leading-none">
       <svg viewBox="0 0 16 16" width="1rem" height="1rem" xmlns="http://www.w3.org/2000/svg">
         <path d="m8 0c-4.42 0-8 3.582-8 8 0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.225.483-2.695-1.073-2.695-1.073-.364-.923-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.713 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.09-.202-.36-1.015.07-2.117 0 0 .67-.215 2.2.82.64-.178 1.32-.266 2-.27.68.004 1.36.092 2 .27 1.52-1.035 2.19-.82 2.19-.82.43 1.102.16 1.915.08 2.117.51.56.82 1.273.82 2.147 0 3.073-1.87 3.75-3.65 3.947.28.24.54.731.54 1.48 0 1.071-.01 1.931-.01 2.191 0 .21.14.46.55.38 3.201-1.049 5.491-4.049 5.491-7.579 0-4.418-3.582-8-8-8" />
