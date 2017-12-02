@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="%REACT_APP_THEME_COLOR%">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -27,16 +27,14 @@
     <meta property="og:site_name" content="%REACT_APP_SITE_NAME%" />
     <meta property="og:title" content="%REACT_APP_TITLE%" />
     <meta property="og:description" content="%REACT_APP_DESCRIPTION%" />
-    <meta property="og:image" content="%REACT_APP_URL%/sharing-is-caring.png" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="%REACT_APP_TWITTER%" />
     <meta name="twitter:title" content="%REACT_APP_SITE_NAME% — %REACT_APP_TITLE%" />
     <meta name="twitter:description" content="%REACT_APP_DESCRIPTION%" />
-    <meta name="twitter:image" content="%REACT_APP_URL%/sharing-is-caring.png" />
 
-    <link rel="mask-icon" href="/favicon.svg" color="%REACT_APP_MASK_ICON_COLOR%">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="%PUBLIC_URL%/favicon.svg" color="%REACT_APP_THEME_COLOR%">
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/touch-icon.png">
 
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
