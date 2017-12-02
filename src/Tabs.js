@@ -9,8 +9,7 @@ const TabItem = ({ label, value, isRefined, refine, createURL }) => (
       refine(value);
     }}
     className="no-underline text-black mb-2 inline-block"
-    key={label}
-  >
+    key={label}>
     <span className={`mx-2 ${isRefined && "font-semibold"}`}>{label}</span>
   </a>
 );
@@ -18,12 +17,7 @@ const TabItem = ({ label, value, isRefined, refine, createURL }) => (
 const Tabs = ({ attributeName, currentRefinement, items, ...otherProps }) => (
   <div className="inline-block">
     {items.length > 0 && (
-      <TabItem
-        label="All"
-        value={null}
-        isRefined={!currentRefinement}
-        {...otherProps}
-      />
+      <TabItem label="All" value={null} isRefined={!currentRefinement} {...otherProps} />
     )}
 
     {items.map(item => <TabItem key={item.label} {...otherProps} {...item} />)}

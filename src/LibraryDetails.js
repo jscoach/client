@@ -12,8 +12,7 @@ const LibraryDetails = withRouter(({ match }) => {
     <InstantSearch
       appId={process.env.REACT_APP_ALGOLIA_APP_ID}
       apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
-      indexName={process.env.REACT_APP_INDEX_BY_RELEVANCE}
-    >
+      indexName={process.env.REACT_APP_INDEX_BY_RELEVANCE}>
       <Configure filters={`objectID:${id}`} />
       <Readme id={id} />
     </InstantSearch>

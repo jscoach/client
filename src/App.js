@@ -27,31 +27,22 @@ const attributesToRetrieve = [
   "repositoryName",
   "repositoryUser",
   "stars",
-  "communityPick"
+  "communityPick",
 ];
 
 const sortOptions = [
   { value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "relevance" },
-  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated" }
+  { value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated" },
 ];
 
-const collectionsOrder = [
-  "React",
-  "React Native",
-  "React VR",
-  "Webpack",
-  "Babel",
-  "PostCSS"
-];
+const collectionsOrder = ["React", "React Native", "React VR", "Webpack", "Babel", "PostCSS"];
 
 const filterDelimiter = ".";
 
 const stripFalsy = object => pickBy(object, identity);
 
 const createURL = state => {
-  const selectedSortOption = sortOptions.find(
-    option => state.sortBy === option.value
-  );
+  const selectedSortOption = sortOptions.find(option => state.sortBy === option.value);
 
   const params = stripFalsy({
     query: state.query,
@@ -65,7 +56,7 @@ const createURL = state => {
     compatibility:
       state.refinementList &&
       state.refinementList.compatibility &&
-      state.refinementList.compatibility.join(filterDelimiter)
+      state.refinementList.compatibility.join(filterDelimiter),
   });
 
   return qs.stringify(params, { format: "RFC1738", addQueryPrefix: true });
@@ -76,22 +67,19 @@ const searchStateToUrl = (props, searchState) =>
 
 const urlToSearchState = location => {
   const params = qs.parse(location.search, { ignoreQueryPrefix: true });
-  const selectedSortOption = sortOptions.find(
-    option => params.sort === option.label
-  );
+  const selectedSortOption = sortOptions.find(option => params.sort === option.label);
 
   return stripFalsy({
     query: params.query,
     sortBy: selectedSortOption && selectedSortOption.value,
     menu: stripFalsy({
       collections: params.collection,
-      categories: params.category
+      categories: params.category,
     }),
     refinementList: stripFalsy({
       styling: params.styling && params.styling.split(filterDelimiter),
-      compatibility:
-        params.compatibility && params.compatibility.split(filterDelimiter)
-    })
+      compatibility: params.compatibility && params.compatibility.split(filterDelimiter),
+    }),
   });
 };
 
@@ -100,7 +88,7 @@ class App extends Component {
     super(props);
     this.state = {
       isHome: window.location.search === "",
-      searchState: urlToSearchState(props.location)
+      searchState: urlToSearchState(props.location),
     };
     this.updateURL = throttle(this.updateURL, 1000);
   }
@@ -111,10 +99,7 @@ class App extends Component {
   };
 
   updateURL = searchState => {
-    this.props.history.push(
-      searchStateToUrl(this.props, searchState),
-      searchState
-    );
+    this.props.history.push(searchStateToUrl(this.props, searchState), searchState);
   };
 
   componentWillReceiveProps(props) {
@@ -124,7 +109,7 @@ class App extends Component {
     ) {
       this.setState({
         isHome: false,
-        searchState: urlToSearchState(props.location)
+        searchState: urlToSearchState(props.location),
       });
     }
   }
@@ -143,16 +128,14 @@ class App extends Component {
       <div
         className={`min-h-screen font-sans tracking-tight ${
           isHome ? "bg-grey-lighter" : "bg-white"
-        }`}
-      >
+        }`}>
         <InstantSearch
           appId={process.env.REACT_APP_ALGOLIA_APP_ID}
           apiKey={process.env.REACT_APP_ALGOLIA_API_KEY}
           indexName={process.env.REACT_APP_INDEX_BY_UPDATED_AT}
           searchState={this.state.searchState}
           onSearchStateChange={this.onSearchStateChange}
-          createURL={createURL}
-        >
+          createURL={createURL}>
           <Configure attributesToRetrieve={attributesToRetrieve} />
           <Search
             sortOptions={sortOptions}
@@ -176,9 +159,9 @@ class App extends Component {
 
 App.propTypes = {
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
   }),
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
 };
 
 export default App;

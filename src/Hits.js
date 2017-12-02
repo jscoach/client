@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  connectInfiniteHits,
-  connectStateResults
-} from "react-instantsearch/connectors";
+import { connectInfiniteHits, connectStateResults } from "react-instantsearch/connectors";
 
 import humanizedNumber from "./humanizedNumber";
 import Hit from "./Hit";
@@ -20,10 +17,7 @@ const NoResults = connectStateResults(
 const Delimiter = connectStateResults(
   ({ index, searchResults }) =>
     (index + 1) % searchResults.hitsPerPage === 0 ? (
-      <div
-        className="relative border-b text-grey my-2"
-        data-count={humanizedNumber(index + 1)}
-      />
+      <div className="relative border-b text-grey my-2" data-count={humanizedNumber(index + 1)} />
     ) : null
 );
 
@@ -33,15 +27,14 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => (
 
     {hits.map((hit, index) => [
       <Hit hit={hit} key={hit.objectID} />,
-      <Delimiter key={`delimiter-${hit.objectID}`} index={index} />
+      <Delimiter key={`delimiter-${hit.objectID}`} index={index} />,
     ])}
 
     {hasMore && (
       <button
         className="text-blue text-lg font-semibold border p-3 mt-3 w-full bg-white hover:bg-grey-lighter rounded shadow"
         onClick={refine}
-        disabled={!hasMore}
-      >
+        disabled={!hasMore}>
         Load More
       </button>
     )}

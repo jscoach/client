@@ -31,5 +31,10 @@
     "build": "npm run build-tailwind && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "trailingComma": "es5",
+    "jsxBracketSameLine": true
   }
 }

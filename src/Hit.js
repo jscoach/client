@@ -7,35 +7,28 @@ import "primer-tooltips/build/build.css";
 import humanizedNumber from "./humanizedNumber";
 import Highlight from "./Highlight";
 
-const pluralize = (count, singular, plural = `${singular}s`) =>
-  count === 1 ? singular : plural;
+const pluralize = (count, singular, plural = `${singular}s`) => (count === 1 ? singular : plural);
 
 // Get these averages from the backend with `Package.published.average("stars")`
 // A package is considered popular if any of the stats is above average
 const averages = {
   stars: 277,
   downloads: 54408,
-  dependents: 10
+  dependents: 10,
 };
 
 const thresholds = {
   stars: 25,
   downloads: 250,
-  dependents: 5
+  dependents: 5,
 };
 
 const CompatibilityIcon = ({ label, children }) => (
   <span
     className="mr-2 tooltipped tooltipped-s tooltipped-no-delay"
     aria-label={label}
-    style={{ verticalAlign: -3 }}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-    >
+    style={{ verticalAlign: -3 }}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
       {children}
     </svg>
   </span>
@@ -62,10 +55,9 @@ const Compatibility = ({ repositoryUrl, android, ios, windows, css }) => (
       <a
         className="text-grey-dark"
         href={`${repositoryUrl}/search?${qs.stringify({
-          q: "language:css language:sass language:scss language:less"
+          q: "language:css language:sass language:scss language:less",
         })}`}
-        target="_blank"
-      >
+        target="_blank">
         <CompatibilityIcon label="Includes CSS files (click for details)">
           <polygon points="3.53 2 2.959 5 14.575 5 14.213 7 2.589 7 2.026 10.139 13.642 10.139 13 12 8 13.5 4.533 12 1.679 12 1 14.12 7.5 17 15.447 14.12 18 2" />
         </CompatibilityIcon>
@@ -79,33 +71,24 @@ const Hit = withRouter(({ hit, location, expanded }) => (
     className={
       expanded
         ? "bg-grey-darkest px-8 py-6 text-grey-light rounded-t"
-        : "relative bg-white block text-black p-3 hover:bg-grey-lighter rounded w-full"
-    }
-  >
+        : "relative bg-white text-black p-3 hover:bg-grey-lighter rounded w-full"
+    }>
     {!expanded && (
-      <Link
-        className="pin absolute z-10"
-        to={{ pathname: hit.name, search: location.search }}
-      />
+      <Link className="pin absolute z-10" to={{ pathname: hit.name, search: location.search }} />
     )}
-
     <div className="mb-2">
       {expanded && (
         <a
           className="float-right no-underline text-white bg-indigo hover:bg-indigo-dark py-2 px-3 rounded ml-3 shadow"
           href={hit.repositoryUrl}
-          target="_blank"
-        >
+          target="_blank">
           View on GitHub
         </a>
       )}
-
       {hit.collections.length > 0 && (
         <div className="text-grey text-sm mb-1">
           <span className="pr-2">{hit.collections.join(", ")}</span>
-          {hit.communityPick && (
-            <span className="text-green">Community pick</span>
-          )}
+          {hit.communityPick && <span className="text-green">Community pick</span>}
           {!hit.communityPick &&
             (hit.stars > averages.stars ||
               hit.downloads > averages.downloads ||
@@ -116,19 +99,13 @@ const Hit = withRouter(({ hit, location, expanded }) => (
       )}
       <Link
         to={{ pathname: hit.name, search: location.search }}
-        className={
-          expanded
-            ? "text-white no-underline"
-            : "text-blue-dark visited no-underline"
-        }
-      >
+        className={expanded ? "text-white no-underline" : "text-blue-dark visited no-underline"}>
         <strong className={expanded ? "pr-2 text-xl" : "pr-2 text-lg"}>
           <Highlight attributeName="name" hit={hit} tagName="mark" />
         </strong>
       </Link>
       <em className="roman text-grey-dark">
-        v{hit.latestRelease}{" "}
-        {hit.modifiedAt === hit.publishedAt ? "published " : "updated "}
+        v{hit.latestRelease} {hit.modifiedAt === hit.publishedAt ? "published " : "updated "}
         <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
       </em>
     </div>
@@ -144,8 +121,7 @@ const Hit = withRouter(({ hit, location, expanded }) => (
           style={{ maxWidth: 100, verticalAlign: 1 }}
           target="_blank"
           href={`https://spdx.org/licenses/${hit.license}.html`}
-          aria-label={`Licensed under ${hit.license}\n(click to learn more)`}
-        >
+          aria-label={`Licensed under ${hit.license}\n(click to learn more)`}>
           {hit.license}
         </a>
       )}
@@ -156,46 +132,30 @@ const Hit = withRouter(({ hit, location, expanded }) => (
         }`}
         aria-label={`${hit.stars} ${pluralize(hit.stars, "star")} on GitHub${
           hit.stars > averages.stars ? " (above average)" : ""
-        }`}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="13"
-          height="12"
-          viewBox="0 0 13 12"
-        >
+        }`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12">
           <polygon points="6.285 9.644 10.169 12 9.138 7.561 12.57 4.573 8.051 4.188 6.285 .001 4.519 4.188 0 4.573 3.432 7.561 2.401 12" />
         </svg>{" "}
         {humanizedNumber(hit.stars)}
       </span>
       <span
         className={`mr-4 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay ${
-          hit.downloads > thresholds.downloads
-            ? "text-teal-dark"
-            : "text-grey-dark"
+          hit.downloads > thresholds.downloads ? "text-teal-dark" : "text-grey-dark"
         }`}
         aria-label={`${hit.downloads} ${pluralize(
           hit.downloads,
           "download"
         )} from npm\nin the last 30 days${
           hit.downloads > averages.downloads ? " (above average)" : ""
-        }`}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-        >
+        }`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
           <polygon points="12 6 9 6 9 1 3 1 3 6 0 6 6 12" />
         </svg>{" "}
         {humanizedNumber(hit.downloads)}
       </span>
       <span
         className={`mr-4 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay ${
-          hit.dependents > thresholds.dependents
-            ? "text-pink-dark"
-            : "text-grey-dark"
+          hit.dependents > thresholds.dependents ? "text-pink-dark" : "text-grey-dark"
         }`}
         aria-label={`${hit.dependents} ${pluralize(
           hit.dependents,
@@ -203,14 +163,8 @@ const Hit = withRouter(({ hit, location, expanded }) => (
           "packages"
         )} ${pluralize(hit.dependents, "depends", "depend")} on this package${
           hit.dependents > averages.dependents ? "\n(above average)" : ""
-        }`}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-        >
+        }`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
           <path d="M5.49999938,1.5081529e-06 C5.39771197,1.5081529e-06 5.29651854,0.0249123286 5.20489747,0.0755206269 L0.295238654,2.78293348 C0.111586263,2.88428118 0,3.07989668 0,3.28285431 L0,8.71642868 C0,8.91964853 0.111723011,9.1052997 0.295238654,9.20704073 L5.20489747,11.9237624 C5.38739703,12.0254125 5.61273847,12.0254125 5.79523803,11.9237624 L10.7048968,9.20704073 C10.8878518,9.10601798 11.0004325,8.91885052 10.9999988,8.71642868 L10.9999988,3.28285431 C10.9999988,3.07963446 10.8884125,2.88428118 10.7048968,2.78293348 L5.79523803,0.0755206269 C5.70549329,0.02582561 5.60363639,-0.00022837378 5.49999938,1.5081529e-06 L5.49999938,1.5081529e-06 Z" />
         </svg>{" "}
         {humanizedNumber(hit.dependents)}
@@ -220,13 +174,8 @@ const Hit = withRouter(({ hit, location, expanded }) => (
         android={hit.compatibility.indexOf("Android") >= 0}
         ios={hit.compatibility.indexOf("iOS") >= 0}
         windows={hit.compatibility.indexOf("Windows") >= 0}
-        css={
-          hit.styling.indexOf("Inline Styles") < 0 &&
-          hit.collections.indexOf("React") >= 0
-        }
-        repositoryUrl={`https://github.com/${hit.repositoryUser}/${
-          hit.repositoryName
-        }`}
+        css={hit.styling.indexOf("Inline Styles") < 0 && hit.collections.indexOf("React") >= 0}
+        repositoryUrl={`https://github.com/${hit.repositoryUser}/${hit.repositoryName}`}
       />
     </div>
   </div>

@@ -13,16 +13,10 @@ const MetaTags = hit => (
 
     <meta property="og:title" content={hit.name} />
     <meta property="og:description" content={hit.description} />
-    <meta
-      property="og:image"
-      content={`https://github.com/${hit.repositoryUser}.png`}
-    />
+    <meta property="og:image" content={`https://github.com/${hit.repositoryUser}.png`} />
     <meta name="twitter:title" content={hit.name} />
     <meta name="twitter:description" content={hit.description} />
-    <meta
-      name="twitter:image"
-      content={`https://github.com/${hit.repositoryUser}.png`}
-    />
+    <meta name="twitter:image" content={`https://github.com/${hit.repositoryUser}.png`} />
   </Helmet>
 );
 
@@ -34,7 +28,7 @@ class Readme extends Component {
 
     this.props.history.push({
       pathname: "/",
-      search: this.props.location.search
+      search: this.props.location.search,
     });
   };
 
@@ -60,19 +54,12 @@ class Readme extends Component {
 
   render() {
     const { searchResults, id } = this.props;
-    const hit =
-      searchResults && searchResults.hits.find(hit => hit.name === id);
+    const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
 
-    if (hit)
-      hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${
-        hit.repositoryName
-      }`;
+    if (hit) hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}`;
 
     return (
-      <div
-        className="fixed pin overflow-auto z-30 cursor-pointer"
-        onClick={this.handleDismiss}
-      >
+      <div className="fixed pin overflow-auto z-30 cursor-pointer" onClick={this.handleDismiss}>
         <div
           className="fixed bg-grey-darkest pin pointer-events-none opacity-75"
           style={{ opacity: 0.9 }}
@@ -83,9 +70,8 @@ class Readme extends Component {
             onClick={this.handleClick}
             style={{
               width: 890,
-              maxWidth: "100%"
-            }}
-          >
+              maxWidth: "100%",
+            }}>
             <div className="shadow-lg">
               <Hit hit={hit} expanded />
 
@@ -96,8 +82,7 @@ class Readme extends Component {
                     <a
                       className="block py-3 text-blue font-semibold no-underline border bg-white hover:bg-grey-lighter rounded shadow"
                       href={hit.repositoryUrl}
-                      target="_blank"
-                    >
+                      target="_blank">
                       Read more
                     </a>
                   </div>

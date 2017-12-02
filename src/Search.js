@@ -15,31 +15,16 @@ import orderBy from "lodash.orderby";
 import jess from "./images/jess.svg";
 import jessSmall from "./images/jess-small.svg";
 
-const Search = ({
-  isHome,
-  currentCollection,
-  currentQuery,
-  collectionsOrder,
-  sortOptions
-}) => (
+const Search = ({ isHome, currentCollection, currentQuery, collectionsOrder, sortOptions }) => (
   <div>
     <Topbar />
 
     <div
       className={
-        isHome
-          ? "flex justify-center items-center"
-          : "bg-grey-lighter border-b overflow-hidden"
+        isHome ? "flex justify-center items-center" : "bg-grey-lighter border-b overflow-hidden"
       }
-      style={isHome ? { minHeight: "calc(100vh - 100px)" } : {}}
-    >
-      <div
-        className={
-          isHome
-            ? "text-center m-8 select-none max-w-md w-full"
-            : "relative m-4 mb-1"
-        }
-      >
+      style={isHome ? { minHeight: "calc(100vh - 100px)" } : {}}>
+      <div className={isHome ? "text-center m-8 select-none max-w-md w-full" : "relative m-4 mb-1"}>
         {isHome ? (
           <img
             src={jess}
@@ -69,9 +54,7 @@ const Search = ({
               attributeName="collections"
               transformItems={items =>
                 items.sort(
-                  (a, b) =>
-                    collectionsOrder.indexOf(a.label) >
-                    collectionsOrder.indexOf(b.label)
+                  (a, b) => collectionsOrder.indexOf(a.label) > collectionsOrder.indexOf(b.label)
                 )
               }
             />
@@ -103,9 +86,7 @@ const Search = ({
                 <CheckboxList
                   attributeName="styling"
                   operator="and"
-                  transformItems={items =>
-                    orderBy(items, ["label", "count"], ["asc", "desc"])
-                  }
+                  transformItems={items => orderBy(items, ["label", "count"], ["asc", "desc"])}
                 />
               </Panel>
             </div>
@@ -130,9 +111,7 @@ const Search = ({
                 attributeName="categories"
                 showMore
                 limitMax={25}
-                transformItems={items =>
-                  orderBy(items, ["label", "count"], ["asc", "desc"])
-                }
+                transformItems={items => orderBy(items, ["label", "count"], ["asc", "desc"])}
               />
             </Panel>
           </div>

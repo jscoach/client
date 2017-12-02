@@ -16,28 +16,19 @@ const CheckBoxItem = ({ label, value, count, isRefined, refine }) => (
       {label}
     </label>
     {count > 0 && (
-      <span className="px-2 rounded-full bg-grey-light text-grey-dark text-sm">
-        {count}
-      </span>
+      <span className="px-2 rounded-full bg-grey-light text-grey-dark text-sm">{count}</span>
     )}
   </div>
 );
 
-const CheckboxList = connectRefinementList(
-  ({ items, attributeName, refine, createURL }) => (
-    <div>
-      {items.length === 0 && <span className="text-grey-dark">No filters available</span>}
+const CheckboxList = connectRefinementList(({ items, attributeName, refine, createURL }) => (
+  <div>
+    {items.length === 0 && <span className="text-grey-dark">No filters available</span>}
 
-      {items.map(item => (
-        <CheckBoxItem
-          key={item.label}
-          refine={refine}
-          createURL={createURL}
-          {...item}
-        />
-      ))}
-    </div>
-  )
-);
+    {items.map(item => (
+      <CheckBoxItem key={item.label} refine={refine} createURL={createURL} {...item} />
+    ))}
+  </div>
+));
 
 export default CheckboxList;

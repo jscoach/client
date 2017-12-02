@@ -9,8 +9,7 @@ const SortBy = connectSortBy(({ items, currentRefinement, refine }) => (
       onChange={e => {
         e.preventDefault();
         refine(e.target.value);
-      }}
-    >
+      }}>
       {items.map(item => (
         <option key={item.value} value={item.value}>
           Sort by {item.label}
@@ -18,11 +17,7 @@ const SortBy = connectSortBy(({ items, currentRefinement, refine }) => (
       ))}
     </select>
     <div className="pointer-events-none absolute pin-y pin-r flex items-center text-grey-dark">
-      <svg
-        className="h-4 w-4"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
+      <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
       </svg>
     </div>
