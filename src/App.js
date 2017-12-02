@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { InstantSearch, Configure } from "react-instantsearch/dom";
-import { Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import pickBy from "lodash.pickby";
 import identity from "lodash.identity";
@@ -38,6 +38,16 @@ const sortOptions = [
 const collectionsOrder = ["React", "React Native", "React VR", "Webpack", "Babel", "PostCSS"];
 
 const filterDelimiter = ".";
+
+const classicRoutes = {
+  all: null,
+  react: "React",
+  "react-native": "React+Native",
+  webpack: "Webpack",
+  browserify: "Browserify",
+  babel: "Babel",
+  postcss: "PostCSS",
+};
 
 const stripFalsy = object => pickBy(object, identity);
 
@@ -87,7 +97,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isHome: window.location.search === "",
+      isHome: window.location.search === "" && window.location.pathname === "/",
       searchState: urlToSearchState(props.location),
     };
     this.updateURL = throttle(this.updateURL, 1000);
@@ -146,7 +156,23 @@ class App extends Component {
           />
         </InstantSearch>
 
-        <Route path="/:user?/:name" component={LibraryDetails} />
+        <Switch>
+          {Object.keys(classicRoutes).map(slug => [
+            <Route
+              exact
+              key={`${slug}-root`}
+              path={`/${slug}`}
+              component={() => <Redirect to={`/?collection=${classicRoutes[slug]}`} />}
+            />,
+            <Route
+              exact
+              key={slug}
+              path={`/${slug}/:name`}
+              component={({ match }) => <Redirect to={`/${match.params.name}`} />}
+            />,
+          ])}
+          <Route path="/:user?/:name" component={LibraryDetails} />
+        </Switch>
 
         <Helmet
           defaultTitle={process.env.REACT_APP_SITE_NAME}
