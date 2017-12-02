@@ -2,29 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connectStateResults } from "react-instantsearch/connectors";
 import { Helmet } from "react-helmet";
-import TimeAgo from "react-timeago";
 import "github-markdown-css";
 
+import Hit from "./Hit";
 import "./Readme.css";
-
-const Header = hit => (
-  <div className="bg-grey-lighter border-b border-grey-light px-8 py-4">
-    <a
-      className="float-right no-underline text-white bg-blue hover:bg-blue-dark border border-blue-darker py-2 px-4 rounded ml-4 mb-2"
-      href={hit.repositoryUrl}
-      target="_blank"
-    >
-      View on GitHub
-    </a>
-
-    <div className="text-grey text-sm mb-1">{hit.collections.join(", ")}</div>
-    <strong className="pr-2 text-lg">{hit.name}</strong>
-    <em className="roman text-grey-dark">
-      v{hit.latestRelease} published{" "}
-      <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
-    </em>
-  </div>
-);
 
 const MetaTags = hit => (
   <Helmet>
@@ -92,33 +73,37 @@ class Readme extends Component {
         className="fixed pin overflow-auto z-30 cursor-pointer"
         onClick={this.handleDismiss}
       >
-        <div className="fixed bg-black pin pointer-events-none opacity-25" />
+        <div
+          className="fixed bg-grey-darkest pin pointer-events-none opacity-75"
+          style={{ opacity: 0.9 }}
+        />
         {hit && (
           <div
-            className="relative bg-white ml-auto cursor-auto min-h-full"
+            className="relative ml-auto cursor-auto p-6 mt-8"
             onClick={this.handleClick}
             style={{
-              boxShadow:
-                "-1px 0 0 rgba(0,0,0,.2), 0 0 18px 4px rgba(0,0,0,.15)",
-              maxWidth: 890
+              width: 890,
+              maxWidth: "100%"
             }}
           >
-            <Header {...hit} />
-            <div
-              className="p-8"
-              dangerouslySetInnerHTML={{ __html: hit && hit.readme }}
-            />
-            {hit.readmeWasTruncated && (
-              <div className="w-full px-8 pb-6 text-lg text-center">
-                <a
-                  className="block py-3 text-blue font-semibold no-underline border bg-white hover:bg-grey-lighter rounded shadow"
-                  href={hit.repositoryUrl}
-                  target="_blank"
-                >
-                  Read more
-                </a>
+            <div className="shadow-lg">
+              <Hit hit={hit} expanded />
+
+              <div className="p-8 bg-white rounded-b">
+                <div dangerouslySetInnerHTML={{ __html: hit && hit.readme }} />
+                {hit.readmeWasTruncated && (
+                  <div className="w-full pt-6 text-lg text-center">
+                    <a
+                      className="block py-3 text-blue font-semibold no-underline border bg-white hover:bg-grey-lighter rounded shadow"
+                      href={hit.repositoryUrl}
+                      target="_blank"
+                    >
+                      Read more
+                    </a>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
             <MetaTags {...hit} />
           </div>
         )}

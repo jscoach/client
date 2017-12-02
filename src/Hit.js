@@ -74,14 +74,32 @@ const Compatibility = ({ repositoryUrl, android, ios, windows, css }) => (
   </div>
 );
 
-const Hit = withRouter(({ hit, history, location }) => (
-  <div className="relative bg-white block text-black p-3 hover:bg-grey-lighter rounded w-full">
-    <Link
-      className="pin absolute z-10"
-      to={{ pathname: hit.name, search: location.search }}
-    />
+const Hit = withRouter(({ hit, location, expanded }) => (
+  <div
+    className={
+      expanded
+        ? "bg-grey-darkest px-8 py-6 text-grey-light rounded-t"
+        : "relative bg-white block text-black p-3 hover:bg-grey-lighter rounded w-full"
+    }
+  >
+    {!expanded && (
+      <Link
+        className="pin absolute z-10"
+        to={{ pathname: hit.name, search: location.search }}
+      />
+    )}
 
     <div className="mb-2">
+      {expanded && (
+        <a
+          className="float-right no-underline text-white bg-indigo hover:bg-indigo-dark py-2 px-3 rounded ml-3 shadow"
+          href={hit.repositoryUrl}
+          target="_blank"
+        >
+          View on GitHub
+        </a>
+      )}
+
       {hit.collections.length > 0 && (
         <div className="text-grey text-sm mb-1">
           <span className="pr-2">{hit.collections.join(", ")}</span>
@@ -98,9 +116,13 @@ const Hit = withRouter(({ hit, history, location }) => (
       )}
       <Link
         to={{ pathname: hit.name, search: location.search }}
-        className="text-blue-dark visited no-underline"
+        className={
+          expanded
+            ? "text-white no-underline"
+            : "text-blue-dark visited no-underline"
+        }
       >
-        <strong className="pr-2 text-lg">
+        <strong className={expanded ? "pr-2 text-xl" : "pr-2 text-lg"}>
           <Highlight attributeName="name" hit={hit} tagName="mark" />
         </strong>
       </Link>
@@ -118,7 +140,7 @@ const Hit = withRouter(({ hit, history, location }) => (
     <div className="cursor-default z-20 relative inline-block">
       {hit.license && (
         <a
-          className="mr-4 px-1 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay border rounded-sm text-sm truncate align-bottom no-underline text-black z-20 relative"
+          className="mr-4 px-1 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay border rounded-sm text-sm truncate align-bottom no-underline text-inherit relative"
           style={{ maxWidth: 100, verticalAlign: 1 }}
           target="_blank"
           href={`https://spdx.org/licenses/${hit.license}.html`}
@@ -172,18 +194,14 @@ const Hit = withRouter(({ hit, history, location }) => (
       <span
         className={`mr-4 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay ${
           hit.dependents > thresholds.dependents
-            ? "text-purple-dark"
+            ? "text-pink-dark"
             : "text-grey-dark"
         }`}
         aria-label={`${hit.dependents} ${pluralize(
           hit.dependents,
           "package",
           "packages"
-        )} ${pluralize(
-          hit.dependents,
-          "depends",
-          "depend"
-        )} on this package${
+        )} ${pluralize(hit.dependents, "depends", "depend")} on this package${
           hit.dependents > averages.dependents ? "\n(above average)" : ""
         }`}
       >
