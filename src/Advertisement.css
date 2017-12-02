@@ -1,0 +1,36 @@
+.ad {
+  min-height: 160px;
+  width: 156px;
+}
+
+#carbonads {
+  bottom: 0;
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  width: 130px;
+}
+
+.carbon-img img {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.carbon-text,
+.carbon-poweredby {
+  color: #000;
+  text-decoration: none;
+}
+
+.carbon-text {
+  display: block;
+  float: left;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.carbon-poweredby {
+  color: #b1b1b1;
+  display: block;
+  font-size: .8em;
+}

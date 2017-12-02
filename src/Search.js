@@ -11,6 +11,7 @@ import SortBy from "./SortBy";
 import Tabs from "./Tabs";
 import Topbar from "./Topbar";
 import orderBy from "lodash.orderby";
+import Advertisement from "./Advertisement";
 
 import jess from "./images/jess.svg";
 import jessSmall from "./images/jess-small.svg";
@@ -79,7 +80,9 @@ const Search = ({ isHome, currentCollection, currentQuery, collectionsOrder, sor
           <SearchPoweredBy />
         </div>
 
-        <div className="ml-8 pl-4 mt-8 pt-3 flex-none">
+        <div className="ml-8 pl-4 pt-2 flex-none">
+          {!isHome && <Advertisement />}
+
           {currentCollection === "React" && (
             <div className="mb-8">
               <Panel title="Styling">
