@@ -34,7 +34,8 @@
     .inline-block
     .no-underline
     .rounded
-    .shadow;
+    .shadow
+    .cursor-pointer;
 }
 
 .btn-primary {
@@ -59,6 +60,27 @@
 
 .btn-secondary:hover {
   @apply .bg-grey-lighter;
+}
+
+.dropdown-content {
+  @apply
+    .shadow-lg
+    .rounded
+    .bg-indigo-dark
+    .overflow-hidden;
+}
+
+.dropdown-item {
+  @apply
+    .no-underline
+    .text-white
+    .block
+    .px-4
+    .py-2;
+}
+
+.dropdown-item:hover {
+  @apply .bg-indigo-darker;
 }
 
 /**

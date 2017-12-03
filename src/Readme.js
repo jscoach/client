@@ -78,6 +78,7 @@ class Readme extends Component {
             className="relative ml-auto cursor-auto p-6 mt-8"
             onClick={this.handleClick}
             style={{
+              minWidth: 890,
               width: 890,
               maxWidth: "100%",
             }}>

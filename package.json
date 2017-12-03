@@ -20,6 +20,7 @@
     "react-instantsearch": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
+    "react-simple-dropdown": "^3.2.0",
     "react-timeago": "^3.4.3",
     "tailwindcss": "^0.2.2"
   },

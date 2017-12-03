@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import TimeAgo from "react-timeago";
+import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import qs from "qs";
 import "primer-tooltips/build/build.css";
+import "react-simple-dropdown/styles/Dropdown.css";
 
 import pluralize from "./pluralize";
 import humanizedNumber from "./humanizedNumber";
@@ -123,7 +125,7 @@ const CompatibilityIcons = ({ expanded, repositoryUrl, android, ios, windows, cs
   </div>
 );
 
-const ExternalLinks = ({ homepage, repositoryUrl }) => (
+const ExternalLinks = ({ name, homepage, repositoryUrl }) => (
   <div className="ml-3 float-right">
     {homepage && (
       <a
@@ -136,9 +138,53 @@ const ExternalLinks = ({ homepage, repositoryUrl }) => (
         </svg>
       </a>
     )}
-    <a className="btn btn-primary py-2 px-3" href={repositoryUrl} target="_blank">
-      View on GitHub
-    </a>
+    <div className="inline-block relative">
+      <a className="btn btn-primary py-2 px-3 rounded-r-none" href={repositoryUrl} target="_blank">
+        View on GitHub
+      </a>
+      <Dropdown>
+        <DropdownTrigger className="btn btn-primary p-2 border-l border-indigo-darker rounded-l-none">
+          <svg
+            width="13"
+            height="13"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            style={{ verticalAlign: -1 }}>
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+          </svg>
+        </DropdownTrigger>
+        <DropdownContent className="dropdown-content pin-r pin-l mt-1">
+          <ul className="list-reset">
+            <li>
+              <a
+                href={`https://www.npmjs.com/package/${name}`}
+                target="_blank"
+                className="dropdown-item pt-3">
+                View on NPM
+              </a>
+            </li>
+            <li>
+              <a href={`https://yarn.pm/${name}`} target="_blank" className="dropdown-item">
+                View on Yarn
+              </a>
+            </li>
+            <li>
+              <a href={`https://npm.runkit.com/${name}`} target="_blank" className="dropdown-item">
+                Try on RunKit
+              </a>
+            </li>
+            <li>
+              <a
+                href={`https://www.jsdelivr.com/package/npm/${name}`}
+                target="_blank"
+                className="dropdown-item pb-3">
+                Get from jsDelivr
+              </a>
+            </li>
+          </ul>
+        </DropdownContent>
+      </Dropdown>
+    </div>
   </div>
 );
 
