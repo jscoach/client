@@ -31,10 +31,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refine }) => (
     ])}
 
     {hasMore && (
-      <button
-        className="btn-secondary mt-3 w-full"
-        onClick={refine}
-        disabled={!hasMore}>
+      <button className="btn btn-secondary p-3 mt-3 w-full" onClick={refine} disabled={!hasMore}>
         Load More
       </button>
     )}

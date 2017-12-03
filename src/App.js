@@ -28,6 +28,7 @@ const attributesToRetrieve = [
   "repositoryUser",
   "stars",
   "communityPick",
+  "homepage",
 ];
 
 const sortOptions = [

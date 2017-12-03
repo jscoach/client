@@ -29,16 +29,29 @@
  * @import "components/forms";
  */
 
+.btn {
+  @apply
+    .inline-block
+    .no-underline
+    .rounded
+    .shadow;
+}
+
+.btn-primary {
+  @apply
+    .text-white
+    .bg-indigo;
+}
+
+.btn-primary:hover {
+  @apply .bg-indigo-dark;
+}
+
 .btn-secondary {
   @apply
     .bg-white
-    .block
     .border
     .font-bold
-    .no-underline
-    .p-3
-    .rounded
-    .shadow
     .text-blue
     .text-center
     .text-lg;

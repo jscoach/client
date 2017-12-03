@@ -87,8 +87,11 @@ class Readme extends Component {
               <div className="p-8 bg-white rounded-b">
                 <div dangerouslySetInnerHTML={{ __html: hit && hit.readme }} />
                 {hit.readmeWasTruncated && (
-                  <div className="w-full pt-6">
-                    <a className="btn-secondary" href={hit.repositoryUrl} target="_blank">
+                  <div className="pt-6">
+                    <a
+                      className="btn btn-secondary p-3 w-full"
+                      href={hit.repositoryUrl}
+                      target="_blank">
                       Read more
                     </a>
                   </div>

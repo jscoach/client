@@ -123,6 +123,25 @@ const CompatibilityIcons = ({ expanded, repositoryUrl, android, ios, windows, cs
   </div>
 );
 
+const ExternalLinks = ({ homepage, repositoryUrl }) => (
+  <div className="ml-3 float-right">
+    {homepage && (
+      <a
+        className="btn btn-primary mr-1 py-2 px-3"
+        href={homepage}
+        target="_blank"
+        rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13">
+          <polygon points="6.118 13 6.118 8.412 9.176 8.412 9.176 13 13 13 13 6.882 15.294 6.882 7.647 0 0 6.882 2.294 6.882 2.294 13" />
+        </svg>
+      </a>
+    )}
+    <a className="btn btn-primary py-2 px-3" href={repositoryUrl} target="_blank">
+      View on GitHub
+    </a>
+  </div>
+);
+
 const Hit = withRouter(({ hit, location, expanded }) => (
   <div
     className={
@@ -134,14 +153,8 @@ const Hit = withRouter(({ hit, location, expanded }) => (
       <Link className="pin absolute z-10" to={{ pathname: hit.name, search: location.search }} />
     )}
     <div className="mb-2">
-      {expanded && (
-        <a
-          className="float-right no-underline text-white bg-indigo hover:bg-indigo-dark py-2 px-3 rounded ml-3 shadow"
-          href={hit.repositoryUrl}
-          target="_blank">
-          View on GitHub
-        </a>
-      )}
+      {expanded && <ExternalLinks {...hit} />}
+
       {hit.collections.length > 0 && (
         <div className="text-grey text-sm mb-1">
           <span className="pr-2">{hit.collections.join(", ")}</span>
