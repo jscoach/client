@@ -1,7 +1,7 @@
 {
-  "name": "libs-directory-client-react",
-  "homepage": "https://libs.directory",
-  "version": "0.1.0",
+  "name": "jscoach-client",
+  "homepage": "https://js.coach",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "gh-pages": "^1.1.0",
