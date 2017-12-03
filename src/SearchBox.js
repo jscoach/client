@@ -16,7 +16,7 @@ const SearchBox = connectSearchBox(({ currentRefinement, refine }) => (
       autoComplete="off"
       autoCorrect="off"
       className="bg-transparent flex-1 p-2 mx-1 text-black"
-      name="query"
+      name="search"
       onChange={e => refine(e.target.value)}
       placeholder="Search for components, boilerplates, generators and other packages"
       spellCheck="false"

@@ -56,7 +56,7 @@ const createURL = state => {
   const selectedSortOption = sortOptions.find(option => state.sortBy === option.value);
 
   const params = stripFalsy({
-    query: state.query,
+    search: state.query,
     sort: selectedSortOption && selectedSortOption.label,
     collection: state.menu && state.menu.collections,
     category: state.menu && state.menu.categories,
@@ -81,7 +81,7 @@ const urlToSearchState = location => {
   const selectedSortOption = sortOptions.find(option => params.sort === option.label);
 
   return stripFalsy({
-    query: params.query,
+    query: params.search,
     sortBy: selectedSortOption && selectedSortOption.value,
     menu: stripFalsy({
       collections: params.collection,
