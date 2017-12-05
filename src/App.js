@@ -29,6 +29,7 @@ const attributesToRetrieve = [
   "stars",
   "communityPick",
   "homepage",
+  "customRepoPath",
 ];
 
 const sortOptions = [

@@ -65,7 +65,11 @@ class Readme extends Component {
     const { searchResults, id, searching } = this.props;
     const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
 
-    if (hit) hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}`;
+    if (hit) {
+      hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}${
+        hit.customRepoPath ? `/tree/master/${hit.customRepoPath}` : ""
+      }`;
+    }
 
     return (
       <div className="fixed pin overflow-auto z-30 cursor-pointer" onClick={this.handleDismiss}>
