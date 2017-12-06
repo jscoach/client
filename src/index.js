@@ -1,3 +1,7 @@
+import 'core-js/fn/array/find';
+import 'core-js/fn/string/starts-with';
+import 'core-js/fn/number/is-nan';
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
