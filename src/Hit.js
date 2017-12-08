@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import TimeAgo from "react-timeago";
+import TimeAgo from "timeago-react";
+import timeago from "timeago.js";
 import Dropdown, { DropdownTrigger, DropdownContent } from "react-simple-dropdown";
 import qs from "qs";
 import "primer-tooltips/build/build.css";
@@ -194,12 +195,18 @@ const Hit = withRouter(({ hit, location, expanded }) => {
     hit.downloads > averages.downloads ||
     hit.dependents > averages.dependents;
 
+  const twoYearsAgo = new Date();
+  twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
+  const outdated = new Date(hit.pushedAt) < twoYearsAgo;
+
   return (
     <div
       className={
         expanded
           ? "bg-grey-darkest px-8 py-6 text-grey-light rounded-t"
-          : "relative bg-white text-black p-3 hover:bg-grey-lighter rounded w-full"
+          : `relative bg-white text-black p-3 hover:bg-grey-lighter rounded w-full ${
+              outdated ? "opacity-50 hover:opacity-100" : ""
+            }`
       }>
       {!expanded && (
         <Link className="pin absolute z-10" to={{ pathname: hit.name, search: location.search }} />
@@ -212,9 +219,12 @@ const Hit = withRouter(({ hit, location, expanded }) => {
             <span className="pr-2">{hit.collections.join(", ")}</span>
             {hit.communityPick && <span className="text-green">Community pick</span>}
             {!hit.communityPick && popular && <span className="text-green pr-2">Popular</span>}
+            {!hit.communityPick &&
+              !popular &&
+              outdated && <span className="text-red pr-2">Outdated</span>}
           </div>
         )}
-        <div className="text-grey-dark truncate">
+        <div className="text-grey-dark">
           <Link
             to={{ pathname: hit.name, search: location.search }}
             className={
@@ -225,7 +235,16 @@ const Hit = withRouter(({ hit, location, expanded }) => {
             </strong>
           </Link>
           v{hit.latestRelease} {hit.modifiedAt === hit.publishedAt ? "published " : "updated "}
-          <TimeAgo date={hit.modifiedAt} minPeriod="5" /> <span className="mr-1">by </span>
+          <TimeAgo
+            datetime={hit.modifiedAt}
+            className="cursor-default z-30 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay"
+            aria-label={`Updated release ${timeago().format(
+              hit.modifiedAt
+            )}\nFirst published ${timeago().format(
+              hit.publishedAt
+            )}\nLatest commit ${timeago().format(hit.pushedAt)}`}
+          />{" "}
+          <span className="mr-1">by </span>
           <div
             style={{
               backgroundImage: `url(${hit.repositoryUserAvatar}&s=28)`,

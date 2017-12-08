@@ -31,6 +31,7 @@ const attributesToRetrieve = [
   "communityPick",
   "homepage",
   "customRepoPath",
+  "pushedAt",
 ];
 
 const sortOptions = [
