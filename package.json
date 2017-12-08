@@ -22,7 +22,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "react-simple-dropdown": "^3.2.0",
-    "tailwindcss": "^0.2.2",
+    "tailwindcss": "^0.3.0",
     "timeago-react": "^2.0.0",
     "timeago.js": "^3.0.2"
   },
