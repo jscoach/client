@@ -26,6 +26,7 @@ const attributesToRetrieve = [
   "publishedAt",
   "repositoryName",
   "repositoryUser",
+  "repositoryUserAvatar",
   "stars",
   "communityPick",
   "homepage",

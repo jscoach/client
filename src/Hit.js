@@ -188,65 +188,81 @@ const ExternalLinks = ({ name, homepage, repositoryUrl }) => (
   </div>
 );
 
-const Hit = withRouter(({ hit, location, expanded }) => (
-  <div
-    className={
-      expanded
-        ? "bg-grey-darkest px-8 py-6 text-grey-light rounded-t"
-        : "relative bg-white text-black p-3 hover:bg-grey-lighter rounded w-full"
-    }>
-    {!expanded && (
-      <Link className="pin absolute z-10" to={{ pathname: hit.name, search: location.search }} />
-    )}
-    <div className="mb-2">
-      {expanded && <ExternalLinks {...hit} />}
+const Hit = withRouter(({ hit, location, expanded }) => {
+  const popular =
+    hit.stars > averages.stars ||
+    hit.downloads > averages.downloads ||
+    hit.dependents > averages.dependents;
 
-      {hit.collections.length > 0 && (
-        <div className="text-grey text-sm mb-1">
-          <span className="pr-2">{hit.collections.join(", ")}</span>
-          {hit.communityPick && <span className="text-green">Community pick</span>}
-          {!hit.communityPick &&
-            (hit.stars > averages.stars ||
-              hit.downloads > averages.downloads ||
-              hit.dependents > averages.dependents) && (
-              <span className="text-green pr-2">Popular</span>
-            )}
-        </div>
+  return (
+    <div
+      className={
+        expanded
+          ? "bg-grey-darkest px-8 py-6 text-grey-light rounded-t"
+          : "relative bg-white text-black p-3 hover:bg-grey-lighter rounded w-full"
+      }>
+      {!expanded && (
+        <Link className="pin absolute z-10" to={{ pathname: hit.name, search: location.search }} />
       )}
-      <Link
-        to={{ pathname: hit.name, search: location.search }}
-        className={expanded ? "text-white no-underline" : "text-blue-dark visited no-underline"}>
-        <strong className={expanded ? "pr-2 text-xl" : "pr-2 text-lg"}>
-          <Highlight attributeName="name" hit={hit} tagName="mark" />
-        </strong>
-      </Link>
-      <em className="roman text-grey-dark">
-        v{hit.latestRelease} {hit.modifiedAt === hit.publishedAt ? "published " : "updated "}
-        <TimeAgo date={hit.modifiedAt} minPeriod="5" /> by {hit.repositoryUser}
-      </em>
+      <div className="mb-2">
+        {expanded && <ExternalLinks {...hit} />}
+
+        {hit.collections.length > 0 && (
+          <div className="text-grey text-sm mb-1">
+            <span className="pr-2">{hit.collections.join(", ")}</span>
+            {hit.communityPick && <span className="text-green">Community pick</span>}
+            {!hit.communityPick && popular && <span className="text-green pr-2">Popular</span>}
+          </div>
+        )}
+        <div className="text-grey-dark truncate">
+          <Link
+            to={{ pathname: hit.name, search: location.search }}
+            className={
+              expanded ? "text-white no-underline" : "text-blue-dark visited no-underline"
+            }>
+            <strong className={expanded ? "pr-2 text-xl" : "pr-2 text-lg"}>
+              <Highlight attributeName="name" hit={hit} tagName="mark" />
+            </strong>
+          </Link>
+          v{hit.latestRelease} {hit.modifiedAt === hit.publishedAt ? "published " : "updated "}
+          <TimeAgo date={hit.modifiedAt} minPeriod="5" /> <span className="mr-1">by </span>
+          <div
+            style={{
+              backgroundImage: `url(${hit.repositoryUserAvatar}&s=28)`,
+              filter: "grayscale(0.2)",
+              backgroundSize: 14,
+              width: 14,
+              height: 14,
+              verticalAlign: -2,
+            }}
+            className="rounded-sm mr-1 bg-grey-lighter inline-block"
+          />
+          <span>{hit.repositoryUser}</span>
+        </div>
+      </div>
+
+      <p className="mb-2 leading-tight">
+        <Highlight attributeName="description" hit={hit} tagName="mark" />
+      </p>
+
+      <div className="cursor-default z-20 relative inline-block">
+        {hit.license && <License id={hit.license} />}
+
+        <Stars count={hit.stars} />
+        <Downloads count={hit.downloads} />
+        <Dependents count={hit.dependents} />
+
+        <CompatibilityIcons
+          expanded={expanded}
+          android={hit.compatibility.indexOf("Android") >= 0}
+          ios={hit.compatibility.indexOf("iOS") >= 0}
+          windows={hit.compatibility.indexOf("Windows") >= 0}
+          css={hit.styling.indexOf("Inline Styles") < 0 && hit.collections.indexOf("React") >= 0}
+          repositoryUrl={`https://github.com/${hit.repositoryUser}/${hit.repositoryName}`}
+        />
+      </div>
     </div>
-
-    <p className="mb-2 leading-tight">
-      <Highlight attributeName="description" hit={hit} tagName="mark" />
-    </p>
-
-    <div className="cursor-default z-20 relative inline-block">
-      {hit.license && <License id={hit.license} />}
-
-      <Stars count={hit.stars} />
-      <Downloads count={hit.downloads} />
-      <Dependents count={hit.dependents} />
-
-      <CompatibilityIcons
-        expanded={expanded}
-        android={hit.compatibility.indexOf("Android") >= 0}
-        ios={hit.compatibility.indexOf("iOS") >= 0}
-        windows={hit.compatibility.indexOf("Windows") >= 0}
-        css={hit.styling.indexOf("Inline Styles") < 0 && hit.collections.indexOf("React") >= 0}
-        repositoryUrl={`https://github.com/${hit.repositoryUser}/${hit.repositoryName}`}
-      />
-    </div>
-  </div>
-));
+  );
+});
 
 export default Hit;
