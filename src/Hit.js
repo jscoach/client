@@ -7,6 +7,7 @@ import qs from "qs";
 import "primer-tooltips/build/build.css";
 import "react-simple-dropdown/styles/Dropdown.css";
 
+import licenseUrl from "./license";
 import pluralize from "./pluralize";
 import humanizedNumber from "./humanizedNumber";
 import Highlight from "./Highlight";
@@ -30,7 +31,7 @@ const License = ({ id }) => (
     className="mr-4 px-1 tooltipped tooltipped-s tooltipped-multiline tooltipped-no-delay border rounded-sm text-sm truncate align-bottom no-underline text-inherit relative"
     style={{ maxWidth: 100, verticalAlign: 1 }}
     target="_blank"
-    href={`https://spdx.org/licenses/${id}.html`}
+    href={licenseUrl(id)}
     aria-label={`Licensed under ${id}\n(click to learn more)`}>
     {id}
   </a>
