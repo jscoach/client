@@ -32,6 +32,7 @@ const attributesToRetrieve = [
   "homepage",
   "customRepoPath",
   "pushedAt",
+  "donationUrl",
 ];
 
 const sortOptions = [

@@ -127,11 +127,29 @@ const CompatibilityIcons = ({ expanded, repositoryUrl, android, ios, windows, cs
   </div>
 );
 
-const ExternalLinks = ({ name, homepage, repositoryUrl }) => (
+const ExternalLinks = ({ name, homepage, repositoryUrl, donationUrl }) => (
   <div className="ml-3 float-right">
-    {homepage && (
+    {true && (
       <a
-        className="btn btn-primary mr-1 py-2 px-3"
+        className="btn btn-primary bg-green hover:bg-green-dark mr-1 py-2 px-3 tooltipped tooltipped-s tooltipped-no-delay"
+        aria-label={"Appears to collect donations\non this website"}
+        href={donationUrl}
+        target="_blank"
+        rel="noopener noreferrer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          style={{ verticalAlign: -2 }}>
+          <path d="M11,24 L11,20.978 L10,20.978 L10,24 L8,24 L8,20.978 L3.031,20.978 L3.531,18 L4.61,18 C5.494,18 6,17.149 6,16.293 L6,7.404 C6,6.571 5.515,6 4.635,6 L3,6 L3,3 L8,3 L8,0 L10,0 L10,3 L11,3 L11,0 L13,0 L13,3.053 C17.315,3.199 19.024,4.834 19.514,6.678 C20.094,8.858 18.657,10.688 17.421,11.134 C18.922,11.516 21,12.625 21,15.184 C21,18.667 18.312,21 13,21 L13,24 L11,24 Z M10,12.994 L10,18 C13.969,18 16.688,17.625 16.688,15.484 C16.688,13.188 13.75,12.994 10,12.994 Z M10,11 C12.211,11 15.578,10.844 15.578,8.5 C15.578,6.5 13.5,6 10,6 L10,11 Z" />
+        </svg>
+      </a>
+    )}
+    {repositoryUrl && (
+      <a
+        className="btn btn-primary mr-1 py-2 px-3 tooltipped tooltipped-s tooltipped-no-delay"
+        aria-label="Visit homepage"
         href={homepage}
         target="_blank"
         rel="noopener noreferrer">
