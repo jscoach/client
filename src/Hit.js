@@ -129,7 +129,7 @@ const CompatibilityIcons = ({ expanded, repositoryUrl, android, ios, windows, cs
 
 const ExternalLinks = ({ name, homepage, repositoryUrl, donationUrl }) => (
   <div className="ml-3 float-right">
-    {true && (
+    {donationUrl && (
       <a
         className="btn btn-primary bg-green hover:bg-green-dark mr-1 py-2 px-3 tooltipped tooltipped-s tooltipped-no-delay"
         aria-label={"Appears to collect donations\non this website"}
@@ -146,7 +146,7 @@ const ExternalLinks = ({ name, homepage, repositoryUrl, donationUrl }) => (
         </svg>
       </a>
     )}
-    {repositoryUrl && (
+    {homepage && (
       <a
         className="btn btn-primary mr-1 py-2 px-3 tooltipped tooltipped-s tooltipped-no-delay"
         aria-label="Visit homepage"
