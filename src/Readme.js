@@ -61,6 +61,10 @@ class Readme extends Component {
     this.disableScroll();
   }
 
+  componentWillUnmount() {
+    this.enableScroll();
+  }
+
   render() {
     const { searchResults, id, searching } = this.props;
     const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
