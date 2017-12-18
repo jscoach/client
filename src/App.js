@@ -118,13 +118,23 @@ class App extends Component {
   };
 
   componentWillReceiveProps(props) {
-    if (
-      props.location.pathname !== this.props.location.pathname ||
-      props.location.search !== this.props.location.search
-    ) {
+    const pathChanged = props.location.pathname !== this.props.location.pathname;
+    const paramsChanged = props.location.search !== this.props.location.search;
+
+    if (pathChanged || paramsChanged) {
+      const newState = urlToSearchState(props.location);
+
+      // If the path changed but not the search, it means the modal was open
+      // so keep the pagination the same
+      if (pathChanged && !paramsChanged && this.state.searchState && this.state.searchState.page) {
+        Object.assign(newState, {
+          page: this.state.searchState.page,
+        });
+      }
+
       this.setState({
         isHome: false,
-        searchState: urlToSearchState(props.location),
+        searchState: newState,
       });
     }
   }
