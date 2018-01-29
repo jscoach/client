@@ -20,3 +20,7 @@ ReactDOM.render(
 );
 
 unregister();
+
+if (process.env.RAVEN_URL && window.Raven) {
+  window.Raven.config(process.env.RAVEN_URL).install();
+}
