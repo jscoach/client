@@ -24,7 +24,7 @@ Check out the [classic branch](https://github.com/jscoach/support/tree/classic/p
 #### Search with Algolia
 
 Duplicate the existing `.env` file in the root directory of this subproject and name it `.env.local`.
-This file is already on the `.gitignore` file so you don't accidently commit it to your repository.
+This file is already on the `.gitignore` file so you don't accidentally commit it to your repository.
 Visit the algolia website and fill the following environment variables:
 
 ```bash
