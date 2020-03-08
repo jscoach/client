@@ -1,0 +1,52 @@
+/*! purgecss start ignore */
+
+ul.ais-Pagination-list {
+    display: flex;
+    margin-top: 2rem;
+}
+
+ul.ais-Pagination-list > li {
+    cursor: pointer;
+    background-color: #edf2f7;
+    color: #4a5568;
+    border-radius: .5rem;
+    margin-left: .25rem;
+    margin-right: .25rem;
+}
+
+ul.ais-Pagination-list > li:hover {
+    background-color: #d8dfe6;
+}
+
+ul.ais-Pagination-list > li a {
+    display: block;
+    font-weight: 700;
+    padding: .4rem 0.75rem;
+}
+
+ul.ais-Pagination-list .ais-Pagination-item--disabled {
+    color: #a0aec0 !important;
+    padding: .4rem 0.75rem;
+}
+
+ul.ais-Pagination-list .ais-Pagination-item--selected {
+    background-color: #fec93e !important;
+}
+
+mark {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+
+.overflow-x-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.overflow-x-scroll {
+    -ms-overflow-style: none;
+}
+
+.code {
+    background: #141718;
+}
+/*! purgecss end ignore */
