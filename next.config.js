@@ -1,26 +1,13 @@
 const compose = require('next-compose');
-const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 const withOffline = require('next-offline');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const webpack = require('webpack');
 const dev = process.env.NODE_ENV !== 'production';
 require('dotenv').config()
-
-const bundleAnalyzerConfig = {
-  analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
-  analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
-  bundleAnalyzerConfig: {
-    server: {
-      analyzerMode: 'static',
-      reportFilename: './report/server.html'
-    },
-    browser: {
-      analyzerMode: 'static',
-      reportFilename: './report/client.html'
-    }
-  }
-};
 
 const offlineConfig = {
   workboxOpts: {
@@ -86,7 +73,7 @@ const offlineConfig = {
 
 module.exports = compose([
   [withOffline, offlineConfig],
-  [withBundleAnalyzer, bundleAnalyzerConfig],
+  [withBundleAnalyzer],
   {
     webpack: (config, {defaultLoaders}) => {
 

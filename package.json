@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
+    "@next/bundle-analyzer": "^9.3.5",
     "algoliasearch": "^4.1.0",
     "autoprefixer": "^9.7.5",
     "axios": "^0.19.2",
@@ -46,7 +47,6 @@
   },
   "devDependencies": {
     "@babel/helper-call-delegate": "^7.8.7",
-    "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "babel-plugin-lodash": "^3.3.4",
@@ -71,7 +71,7 @@
     "dev-server": "nodemon server",
     "serve": "NODE_ENV=production node server",
     "build": "NODE_ENV=production next build",
-    "analyze": "cross-env BUNDLE_ANALYZE=both next build"
+    "analyze": "cross-env ANALYZE=true yarn build"
   },
   "prettier": {
     "printWidth": 100,
