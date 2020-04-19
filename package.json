@@ -45,6 +45,7 @@
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
+    "@babel/helper-call-delegate": "^7.8.7",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
@@ -59,6 +60,7 @@
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-cli": "^7.1.0",
+    "postcss-preset-env": "^6.7.0",
     "styled-jsx": "^3.2.5",
     "styled-jsx-plugin-sass": "^1.0.0"
   },
