@@ -15,7 +15,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en" className="bg-white antialiased">
+      <html lang="en" className="bg-white">
       <Head>
         <meta charSet="utf-8"/>
         <meta name="referrer" content="origin-when-cross-origin"/>
