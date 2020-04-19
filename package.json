@@ -68,7 +68,8 @@
     "build": "next build",
     "dev:server": "nodemon server",
     "dev": " PORT=3006 next dev",
-    "serve": "node server",
+    "start": "node server",
+    "deploy": "npm run build && now",
     "analyze": "cross-env ANALYZE=true yarn build"
   },
   "prettier": {
