@@ -19,10 +19,10 @@ const MetaTags = hit => (
 
 const NotFound = () => (
   <div
-    className="relative select-none text-center"
+    className="relative select-none text-center mt-24"
     style={{top: "50%", transform: "translateY(-50%)"}}>
     <strong className="block text-2xl text-gray-300">404</strong>
-    <span className="text-gray-900 text-xl">Página não encontrada</span>
+    <span className="text-gray-900 text-xl">Package Not Found!</span>
   </div>
 );
 
@@ -30,7 +30,7 @@ class Readme extends Component {
 
 
   render() {
-    const {searchResults, id, searching} = this.props;
+    const {searchResults, id, searching, allSearchResults} = this.props;
     const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
 
     if (hit) {
@@ -40,7 +40,7 @@ class Readme extends Component {
     }
     return (<>
 
-        {!searching && !hit && <NotFound/>}
+        {!searching && !hit && allSearchResults ? <NotFound/> : null}
         {hit && (<div className="relative container mx-auto">
             <NextSeo
               title={`${hit.name} - JS.coach`}
