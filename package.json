@@ -63,9 +63,8 @@
   },
   "scripts": {
     "build": "next build",
-    "dev:server": "nodemon server",
-    "dev": " PORT=3006 next dev",
-    "start": "node server",
+    "dev": "next dev",
+    "start": "next start",
     "deploy": "npm run build && now",
     "analyze": "cross-env ANALYZE=true yarn build"
   },
