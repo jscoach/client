@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://js.coach/">
-    <img alt="jess" src="src/images/jess.svg" width="190" height="190">
+    <img alt="jess" src="public/images/jess.svg" width="190" height="190">
   </a>
 </p>
 
