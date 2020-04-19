@@ -1,6 +1,7 @@
 {
-  "short_name": "JS.coach",
   "name": "JS.coach",
+  "short_name": "JS.coach",
+  "description": "Manually curated list of packages for React, Webpack and others.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,8 +13,10 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/?utm_source=web_app_manifest",
+  "orientation": "natural",
   "display": "standalone",
   "theme_color": "#fec93e",
   "background_color": "#d9d9d9"
 }
+
