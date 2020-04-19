@@ -2,7 +2,7 @@ import React from 'react'
 import { Configure, InstantSearch, ScrollTo } from "react-instantsearch-dom";
 import get from "lodash.get";
 
-import Search from "../search";
+import Search from "../Search";
 import Topbar from "../Topbar";
 
 const attributesToRetrieve = [
