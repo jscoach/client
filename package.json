@@ -65,12 +65,10 @@
     "styled-jsx-plugin-sass": "^1.0.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "build": "next build",
+    "dev:server": "nodemon server",
     "dev": " PORT=3006 next dev",
-    "dev-server": "nodemon server",
-    "serve": "NODE_ENV=production node server",
-    "build": "NODE_ENV=production next build",
+    "serve": "node server",
     "analyze": "cross-env ANALYZE=true yarn build"
   },
   "prettier": {

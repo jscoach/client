@@ -11,7 +11,7 @@ const handle = app.getRequestHandler();
 
 const ssrCache = new LRUCache({
   max: 100,
-  maxAge: 1000 * 60 * 60 * 24 * 7, // 7D
+  maxAge: 1000 * 60 * 60 * 12, // 12H
 });
 
 const cachedRender = (req, res, pagePath, queryParams) => {
