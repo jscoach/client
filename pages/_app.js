@@ -16,6 +16,7 @@ function MyApp(props) {
       <DefaultSeo
         title="JS.coach"
         description="Manually curated list of packages for React, Webpack and others."
+        keywords="npm,package manager, yarn,react,react-native"
         openGraph={{
           type: 'website',
           locale: 'en_IE',

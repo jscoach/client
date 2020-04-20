@@ -1,21 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { connectStateResults } from 'react-instantsearch-dom';
-import { Helmet } from "react-helmet";
-import { DefaultSeo, NextSeo } from 'next-seo';
 import Hit from "../Hits/ExpandedHit";
-
-const MetaTags = hit => (
-  <Helmet>
-    <title>{hit.name}</title>
-
-    <meta property="og:title" content={hit.name}/>
-    <meta property="og:description" content={hit.description}/>
-    <meta property="og:image" content={`https://github.com/${hit.repositoryUser}.png`}/>
-    <meta name="twitter:title" content={hit.name}/>
-    <meta name="twitter:description" content={hit.description}/>
-    <meta name="twitter:image" content={`https://github.com/${hit.repositoryUser}.png`}/>
-  </Helmet>
-);
 
 const NotFound = () => (
   <div
@@ -26,30 +11,20 @@ const NotFound = () => (
   </div>
 );
 
-class Readme extends Component {
+function Readme(props) {
+  const {searchResults, id, searching, allSearchResults} = props;
+  const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
 
+  if (hit) {
+    hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}${
+      hit.customRepoPath ? `/tree/master/${hit.customRepoPath}` : ""
+    }`;
+  }
+  return (<>
 
-  render() {
-    const {searchResults, id, searching, allSearchResults} = this.props;
-    const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
-
-    if (hit) {
-      hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}${
-        hit.customRepoPath ? `/tree/master/${hit.customRepoPath}` : ""
-      }`;
-    }
-    return (<>
-
-        {!searching && !hit && allSearchResults ? <NotFound/> : null}
-        {hit && (<div className="relative container mx-auto">
-            <NextSeo
-              title={`${hit.name} - JS.coach`}
-              description={hit.description}
-              openGraph={{
-                title: `${hit.name} - JS.coach`,
-                description: hit.description
-              }}
-            />
+      {!searching && !hit && allSearchResults ? <NotFound/> : null}
+      {hit && (<>
+          <div className="relative container mx-auto">
             <div className="flex flex-wrap">
               <div className="w-full md:w-8/12 p-6">
                 <div dangerouslySetInnerHTML={{__html: hit && hit.readme}}/>
@@ -66,14 +41,13 @@ class Readme extends Component {
               </div>
               <div className="w-full md:w-4/12">
                 <Hit hit={hit}/>
-                <MetaTags {...hit} />
               </div>
             </div>
           </div>
-        )}
-      </>
-    );
-  }
+        </>
+      )}
+    </>
+  );
 }
 
 export default connectStateResults(Readme);

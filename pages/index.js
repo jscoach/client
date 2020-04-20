@@ -74,6 +74,7 @@ class Home extends React.PureComponent {
     clearTimeout(this.debouncedSetState);
 
     this.debouncedSetState = setTimeout(() => {
+      delete searchState.configure;
       const href = searchStateToURL(searchState);
 
       this.props.router.push(href, href, {
