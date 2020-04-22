@@ -5,6 +5,12 @@
     vertical-align: text-bottom;
 }
 
+.markdown-body ol, .markdown-body ul {
+    list-style: inherit;
+    margin: inherit;
+    padding: inherit;
+}
+
 .markdown-body .anchor {
     float: left;
     line-height: 1;
