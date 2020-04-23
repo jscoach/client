@@ -21,6 +21,7 @@ export default class MyDocument extends Document {
         <meta name="referrer" content="origin-when-cross-origin"/>
         <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="google-site-verification" content="tGreMDaj1pL_kYQXrzT7Bgn0nCriJFsvr44prIhkEiM" />
         <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet"/>
         <link rel="shortcut icon" href="/favicon.ico"/>
         <link rel="manifest" href="/manifest.json"/>
