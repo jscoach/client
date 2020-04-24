@@ -27,6 +27,7 @@ export default class MyDocument extends Document {
         <link rel="manifest" href="/manifest.json"/>
         <meta name="theme-color" content="#fec93e"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="#181f2c"/>
+        <script data-ad-client="ca-pub-5020228531772566" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71724704-1"/>
         <script
           dangerouslySetInnerHTML={{
