@@ -34,7 +34,7 @@ const ExternalLinks = ({name, homepage, repositoryUrl, donationUrl}) => (
         </a>
       </li>
       <li className="block">
-        <a href={`https://yarn.pm/${name}`} target="_blank"
+        <a href={`https://yarnpkg.com/package/${name}`} target="_blank"
            className="hover:bg-gray-200 py-3 px-3 rounded-md block">
           View on Yarn
         </a>
