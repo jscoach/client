@@ -55,7 +55,7 @@ const ExpandedHit = ({hit, location}) => {
           className="text-red-600">yarn</span> add {hit.name}</code></pre>
         <ul className="mt-2">
           <li className="block">
-            <a href={`https://npm.runkit.com/${name}`} target="_blank"
+            <a href={`https://npm.runkit.com/${hit.name}`} target="_blank"
                className="hover:bg-gray-200 py-3 px-3 rounded-md block">
               <CompatibilityIcon className="text-green-500">
                 <g stroke="none" strokeWidth="1" fillRule="evenodd">

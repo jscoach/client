@@ -12,18 +12,18 @@ const NotFound = () => (
 );
 
 function Readme(props) {
-  const {searchResults, id, searching, allSearchResults} = props;
-  const hit = searchResults && searchResults.hits.find(hit => hit.name === id);
+  const {searchResults, id, searchState, allSearchResults} = props;
+  const hit = searchResults && searchResults.hits.find(hit => hit.name === searchState.query);
 
-  if (hit) {
+  if (searchResults && hit) {
     hit.repositoryUrl = `https://github.com/${hit.repositoryUser}/${hit.repositoryName}${
       hit.customRepoPath ? `/tree/master/${hit.customRepoPath}` : ""
     }`;
   }
   return (<>
 
-      {!searching && !hit && allSearchResults ? <NotFound/> : null}
-      {hit && (<>
+      {/*{!searching && !hit && allSearchResults ? <NotFound/> : null}*/}
+      {searchResults && hit && (<>
           <div className="relative container mx-auto">
             <div className="flex flex-wrap">
               <div className="w-full md:w-8/12 p-6">
