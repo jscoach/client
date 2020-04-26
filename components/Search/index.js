@@ -59,7 +59,6 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
       </div>
 
       <div className="ml-8 pl-4 pt-2 flex-none hidden md:block">
-        <Advertisement/>
 
         {currentCollection === "React" && (
           <Panel title="Styling">
@@ -90,6 +89,8 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
             transformItems={items => orderBy(items, ["label", "count"], ["asc", "desc"])}
           />
         </Panel>
+
+        <Advertisement/>
       </div>
     </div>
   </>;
