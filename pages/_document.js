@@ -35,7 +35,6 @@ export default class MyDocument extends Document {
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-71724704-1');`
           }}
         />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"/>
       </Head>
       <body className="overflow-x-hidden">
       <Main/>
