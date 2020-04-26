@@ -1,20 +1,14 @@
 import React from "react";
-import { InstantSearch, Configure } from "react-instantsearch/dom";
 import algoliasearch from "algoliasearch/lite";
-import Readme from "../../components/Readme";
-import Topbar from "../../components/Topbar";
 import { withRouter } from "next/router";
 import { findResultsState } from "react-instantsearch-dom/server";
 import get from "lodash.get";
-import { ScrollTo } from "react-instantsearch-dom";
+import NotFound from "../404";
 import { NextSeo } from "next-seo";
-import qs from "qs";
 
 import Algolia from '../../components/Algolia/package';
 
-
 const searchClient = algoliasearch(process.env.REACT_APP_ALGOLIA_APP_ID, process.env.REACT_APP_ALGOLIA_API_KEY,);
-const pathToSearchState = path => path.includes('?') ? qs.parse(path.substring(path.indexOf('?') + 1)) : {};
 
 const DEFAULT_PROPS = {
   searchClient,
@@ -29,7 +23,11 @@ const LibraryDetails = ({package_name, package_user, router, resultsState, searc
   }
   const hit = resultsState && resultsState.rawResults[0].hits.find(hit => hit.name === id);
 
-  return <>
+  React.useEffect(() => {
+    console.log('router.query', router.query)
+  }, [])
+
+  return !hit ? <NotFound/> : <>
     <NextSeo
       title={`${hit.name} - JS.coach`}
       description={hit.description}
