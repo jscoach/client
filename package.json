@@ -36,6 +36,7 @@
     "react-instantsearch": "^6.4.0",
     "react-instantsearch-dom": "^6.4.0",
     "react-js-pagination": "^3.0.3",
+    "react-responsive": "^8.0.3",
     "react-router-dom": "^5.1.2",
     "react-simple-dropdown": "^3.2.3",
     "tailwindcss": "^1.2.0",

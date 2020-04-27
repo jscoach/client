@@ -10,6 +10,7 @@ import SortBy from "../SortBy";
 import Tabs from "../Tabs";
 import orderBy from "lodash.orderby";
 import Advertisement from "../Advertisement";
+import MediaQuery from 'react-responsive'
 
 function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}) {
   return <>
@@ -89,8 +90,9 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
             transformItems={items => orderBy(items, ["label", "count"], ["asc", "desc"])}
           />
         </Panel>
-
-        <Advertisement/>
+        <MediaQuery minDeviceWidth={1024}>
+          <Advertisement/>
+        </MediaQuery>
       </div>
     </div>
   </>;
