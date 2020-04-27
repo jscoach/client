@@ -5,7 +5,6 @@ import BundleSize from "./BundleSize";
 import ExternalLinks from "./ExternalLinks";
 import { averages } from "./constants";
 import CompatibilityIcon from "./CompatibilityIcon";
-import MediaQuery from "react-responsive";
 import Advertisement from "../Advertisement";
 
 const ExpandedHit = ({hit, location}) => {
@@ -111,11 +110,9 @@ const ExpandedHit = ({hit, location}) => {
           </li>
         </ul>
       </div>
-      <MediaQuery minDeviceWidth={1024}>
-        <div className="my-12 mx-auto">
-          <Advertisement/>
-        </div>
-      </MediaQuery>
+      <div className="my-12 mx-auto">
+        <Advertisement/>
+      </div>
     </div>
   );
 };

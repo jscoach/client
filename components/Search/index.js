@@ -10,7 +10,6 @@ import SortBy from "../SortBy";
 import Tabs from "../Tabs";
 import orderBy from "lodash.orderby";
 import Advertisement from "../Advertisement";
-import MediaQuery from 'react-responsive'
 
 function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}) {
   return <>
@@ -45,8 +44,8 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
         </div>
       </div>
     </div>
-    <div className="flex p-4 pt-3 container mx-auto">
-      <div className="md:ml-16 max-w-2xl w-full">
+    <div className="flex flex-wrap p-4 pt-3 container mx-auto">
+      <div className="w-full sm:w-9/12 lg:w-8/12 md:pl-16">
         <SortBy
           items={sortOptions}
           defaultRefinement={
@@ -59,7 +58,7 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
         <SearchPoweredBy/>
       </div>
 
-      <div className="ml-8 pl-4 pt-2 flex-none hidden md:block">
+      <div className="w-full sm:w-3/12 lg:w-4/12 pl-4 pt-2">
 
         {currentCollection === "React" && (
           <Panel title="Styling">
@@ -90,11 +89,9 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
             transformItems={items => orderBy(items, ["label", "count"], ["asc", "desc"])}
           />
         </Panel>
-        <MediaQuery minDeviceWidth={1024}>
-          <div className="my-4 mx-auto">
-            <Advertisement/>
-          </div>
-        </MediaQuery>
+        <div className="my-8 mx-auto">
+          <Advertisement/>
+        </div>
       </div>
     </div>
   </>;
