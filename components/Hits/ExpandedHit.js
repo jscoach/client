@@ -5,6 +5,8 @@ import BundleSize from "./BundleSize";
 import ExternalLinks from "./ExternalLinks";
 import { averages } from "./constants";
 import CompatibilityIcon from "./CompatibilityIcon";
+import MediaQuery from "react-responsive";
+import Advertisement from "../Advertisement";
 
 const ExpandedHit = ({hit, location}) => {
   const popular =
@@ -109,7 +111,11 @@ const ExpandedHit = ({hit, location}) => {
           </li>
         </ul>
       </div>
-
+      <MediaQuery minDeviceWidth={1024}>
+        <div className="my-4 mx-auto">
+          <Advertisement/>
+        </div>
+      </MediaQuery>
     </div>
   );
 };

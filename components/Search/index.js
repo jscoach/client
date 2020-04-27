@@ -91,7 +91,9 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
           />
         </Panel>
         <MediaQuery minDeviceWidth={1024}>
-          <Advertisement/>
+          <div className="my-4 mx-auto">
+            <Advertisement/>
+          </div>
         </MediaQuery>
       </div>
     </div>
