@@ -9,7 +9,8 @@ const Pagination = ({currentRefinement, nbPages, refine, createURL, router}) => 
   };
 
   const getPageUrl = (page) => {
-    return router.asPath.replace(/page=[1-9]*/ig, `page=${page}`)
+    const path = router.asPath === '/' ? '/?page=1' : router.asPath;
+    return path.replace(/page=[1-9]*/ig, `page=${page}`)
   };
 
   return (
