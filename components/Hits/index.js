@@ -2,6 +2,7 @@ import React from "react";
 import { connectHits, connectStateResults } from "react-instantsearch-dom";
 import Pagination from "./Pagination"
 import Hit from "./Hit";
+import Inline from "../Advertisement/Inline";
 
 const NoResults = connectStateResults(
   ({searchState, searchResults}) =>
@@ -16,9 +17,12 @@ const NoResults = connectStateResults(
 const Hits = connectHits(({hits}) => (
   <>
     <NoResults/>
-    {hits.map((hit) => [
-      <Hit hit={hit} key={hit.objectID}/>,
-    ])}
+    {hits.map((hit, i) => {
+      return <>
+        {i === Math.ceil(hit / 2) ? <Inline key={i}/> : null}
+        <Hit hit={hit} key={hit.objectID}/>
+      </>
+    })}
     <Pagination/>
   </>
 ));
