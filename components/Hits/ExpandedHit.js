@@ -112,7 +112,7 @@ const ExpandedHit = ({hit, location}) => {
         </ul>
       </div>
       <MediaQuery minDeviceWidth={1024}>
-        <div className="my-4 mx-auto">
+        <div className="my-12 mx-auto">
           <Advertisement/>
         </div>
       </MediaQuery>
