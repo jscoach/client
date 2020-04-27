@@ -8,8 +8,7 @@ function Index() {
   }, [])
   return (
     !initialized ?
-      <ins className="adsbygoogle"
-           style="display:block"
+      <ins className="adsbygoogle block"
            data-ad-format="fluid"
            data-ad-layout-key="-gd-c+21-64+89"
            data-ad-client="ca-pub-5020228531772566"

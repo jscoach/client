@@ -20,6 +20,7 @@ const Hits = connectHits(({hits}) => (
     {hits.map((hit, i) => {
 
       return <>
+        {i === Math.ceil(hits.length / 2) ? <Inline key={i}/> : null}
         <Hit hit={hit} key={hit.objectID}/>
       </>
     })}
