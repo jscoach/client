@@ -29,7 +29,9 @@ function Readme(props) {
             <div className="flex flex-wrap">
               <div className="w-full md:w-8/12 p-6">
                 <div dangerouslySetInnerHTML={{__html: hit && hit.readme}}/>
-                <Inline/>
+                <div className="my-4">
+                  <Inline/>
+                </div>
                 {hit.readmeWasTruncated && (
                   <div className="pt-6">
                     <a
