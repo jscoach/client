@@ -32,7 +32,7 @@ const sortOptions = [
   {value: process.env.REACT_APP_INDEX_BY_RELEVANCE, label: "relevance"},
   {value: process.env.REACT_APP_INDEX_BY_UPDATED_AT, label: "updated"},
 ];
-const collectionsOrder = ["React", "React Native", "React VR", "Webpack", "Babel", "PostCSS"];
+const collectionsOrder = ["React", "React Native", "Vue", "React VR", "Webpack", "Babel", "PostCSS"];
 
 function Algolia(props) {
   const currentCollection = get(props, 'searchState.menu.collections');

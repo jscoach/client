@@ -1,6 +1,7 @@
 import React from "react";
 import { connectStateResults } from 'react-instantsearch-dom';
 import Hit from "../Hits/ExpandedHit";
+import Inline from "../Advertisement/Inline";
 
 const NotFound = () => (
   <div
@@ -28,6 +29,7 @@ function Readme(props) {
             <div className="flex flex-wrap">
               <div className="w-full md:w-8/12 p-6">
                 <div dangerouslySetInnerHTML={{__html: hit && hit.readme}}/>
+                <Inline/>
                 {hit.readmeWasTruncated && (
                   <div className="pt-6">
                     <a
