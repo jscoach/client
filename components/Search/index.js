@@ -60,7 +60,7 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
 
       <div className="w-full sm:w-3/12 lg:w-4/12 pl-4 pt-2">
 
-        {currentCollection === "React" && (
+        {(currentCollection === "React" || currentCollection === "Vue") && (
           <Panel title="Styling">
             <CheckboxList
               attribute="styling"

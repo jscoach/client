@@ -90,7 +90,7 @@ const Hit = ({hit, location}) => {
           android={hit.compatibility.indexOf("Android") >= 0}
           ios={hit.compatibility.indexOf("iOS") >= 0}
           windows={hit.compatibility.indexOf("Windows") >= 0}
-          css={hit.styling.indexOf("Inline Styles") < 0 && hit.collections.indexOf("React") >= 0}
+          css={hit.styling.indexOf("Inline Styles") < 0 && (hit.collections.indexOf("React") >= 0 || hit.collections.indexOf("Vue") >= 0)}
           repositoryUrl={`https://github.com/${hit.repositoryUser}/${hit.repositoryName}`}
         />
       </div>
