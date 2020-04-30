@@ -16,8 +16,7 @@ function Algolia(props) {
     <Configure filters={`objectID:${props.searchState.query}`}/>
     <ScrollTo>
       <Topbar/>
-      <Readme
-      />
+      <Readme/>
     </ScrollTo>
   </InstantSearch>
 }

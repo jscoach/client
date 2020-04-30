@@ -7,6 +7,9 @@ import NotFound from "../404";
 import { NextSeo } from "next-seo";
 
 import Algolia from '../../components/Algolia/package';
+import { averages } from "../../components/Hits/constants";
+import { format } from "timeago.js";
+import humanizedNumber from "../../components/Hits/humanizedNumber";
 
 const searchClient = algoliasearch(process.env.REACT_APP_ALGOLIA_APP_ID, process.env.REACT_APP_ALGOLIA_API_KEY,);
 
@@ -27,6 +30,11 @@ const LibraryDetails = ({package_name, package_user, router, resultsState, searc
     console.log('router.query', router.query)
   }, [])
 
+  const popular =
+    hit.stars > averages.stars ||
+    hit.downloads > averages.downloads ||
+    hit.dependents > averages.dependents;
+
   return !hit ? <NotFound/> : <>
     <NextSeo
       title={`${hit.name} - JS.coach`}
@@ -34,7 +42,10 @@ const LibraryDetails = ({package_name, package_user, router, resultsState, searc
       keywords={hit.keywords.join(',')}
       openGraph={{
         title: `${hit.name} - JS.coach`,
-        description: hit.description
+        description: hit.description,
+        images: [{
+          url: `https://jsshot.now.sh/?i=${encodeURIComponent(hit.repositoryUserAvatar)}&n=${hit.name}&v=v${hit.latestRelease}&s=${humanizedNumber(hit.stars)}&u=${format(hit.modifiedAt)}&${hit.compatibility.slice(0, 2).map(c => `c[]=${c}`).join('&')}&d=${humanizedNumber(hit.downloads)}&l=${hit.license}&p=${!hit.communityPick && popular ? 1 : 0}`
+        }]
       }}
     />
     {resultsState ? <Algolia
