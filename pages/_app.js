@@ -28,7 +28,7 @@ function MyApp(props) {
         twitter={{
           handle: '@_jscoach',
           site: '@_jscoach',
-          cardType: 'summary',
+          cardType: 'summary_large_image',
         }}
       />
       <Component {...pageProps} />
