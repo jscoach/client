@@ -3,7 +3,6 @@ import "github-markdown-css";
 import "primer-tooltips/build/build.css";
 import '../css/app.css'
 import '../css/github-markdown-css.css'
-import '../css/advertisement.css'
 import '../css/readme.css'
 import '../css/tailwind.css'
 

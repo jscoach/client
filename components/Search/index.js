@@ -26,9 +26,9 @@ function Search({currentCollection, currentQuery, collectionsOrder, sortOptions}
               alt="Coach Jess welcomes you!"
             />
           </a>
-          <div className="max-w-2xl">
+          <div className="max-full">
             <SearchBox/>
-            <div className="md:ml-16 mt-6 overflow-x-scroll whitespace-no-wrap">
+            <div className="ml-0 md:ml-2 lg:ml-16 mt-6 overflow-x-scroll whitespace-no-wrap -mx-4">
               <Tabs
                 attribute="collections"
                 items={collectionsOrder}
