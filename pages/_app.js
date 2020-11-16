@@ -7,11 +7,15 @@ import '../css/readme.css'
 import '../css/tailwind.css'
 
 import { DefaultSeo } from 'next-seo';
+import Head from 'next/head'
 
 function MyApp(props) {
   const {Component, pageProps} = props;
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      </Head>
       <DefaultSeo
         title="JS.coach"
         description="Manually curated list of packages for React, Webpack and others."

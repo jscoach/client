@@ -2,6 +2,7 @@ import React from 'react';
 import Document, {
   Head,
   Main,
+  Html,
   NextScript,
 } from 'next/document';
 
@@ -15,12 +16,11 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en" className="bg-white">
+      <Html lang="en" className="bg-white">
       <Head>
         <meta charSet="utf-8"/>
         <meta name="referrer" content="origin-when-cross-origin"/>
         <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="google-site-verification" content="tGreMDaj1pL_kYQXrzT7Bgn0nCriJFsvr44prIhkEiM"/>
         <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet"/>
         <link rel="shortcut icon" href="/favicon.ico"/>
@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
       <Main/>
       <NextScript/>
       </body>
-      </html>
+      </Html>
     );
   }
 }
